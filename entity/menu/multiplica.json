@@ -1,4 +1,4 @@
 {
-  "*": ["endereco", "usuarios"],
-  "3": ["convenios"]
+  "*": ["cep", "endereco"],
+  "5": ["cliente_credenciado", "clientes", "servicos", "transacao", "pessoa_fisica", "conveniado_fisico", "conveniado_juridico"]
 }
