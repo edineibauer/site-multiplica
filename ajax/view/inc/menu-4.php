@@ -1,13 +1,27 @@
 <?php
-$read = new \ConnCrud\Read();
-$read->exeRead(PRE . "credenciado_juridico", "WHERE usuario = :ui", "ui={$_SESSION['userlogin']['id']}");
-if (!$read->getResult())
-    $read->exeRead(PRE . "credenciado_fisico", "WHERE usuario = :ui", "ui={$_SESSION['userlogin']['id']}");
-if (!$read->getResult())
-    $read->exeRead(PRE . "funcionario_credenciado", "WHERE usuario = :ui", "ui={$_SESSION['userlogin']['id']}");
-
-if ($read->getResult()) {
-    $cred = $read->getResult()[0];
+if(!isset($_SESSION['convenio'])) {
+    $read = new \ConnCrud\Read();
+    $read->exeRead(PRE . "credenciado_juridico", "WHERE usuario = :ui", "ui={$_SESSION['userlogin']['id']}");
+    if (!$read->getResult())
+        $read->exeRead(PRE . "credenciado_fisico", "WHERE usuario = :ui", "ui={$_SESSION['userlogin']['id']}");
+    if (!$read->getResult()) {
+        $read->exeRead(PRE . "funcionario_credenciado", "WHERE usuario = :ui", "ui={$_SESSION['userlogin']['id']}");
+        if ($read->getResult()) {
+            $ii = $read->getResult()[0]['id'];
+            $read->exeRead(PRE . "credenciado_juridico_funcionario_credenciado_funcionarios", "WHERE funcionario_credenciado_id = :ii", "ii={$ii}");
+            if ($read->getResult()) {
+                $read->exeRead(PRE . "credenciado_juridico", "WHERE id = :u", "u={$read->getResult()[0]['credenciado_juridico_id']}");
+            } else {
+                $read->exeRead(PRE . "credenciado_fisico_funcionario_credenciado_funcionarios", "WHERE funcionario_credenciado_id = :ii", "ii={$ii}");
+                if ($read->getResult())
+                    $read->exeRead(PRE . "credenciado_fisico", "WHERE id = :u", "u={$read->getResult()[0]['credenciado_fisico_id']}");
+            }
+        }
+    }
+    if ($read->getResult())
+        $_SESSION['convenio'] = $read->getResult()[0];
+}
+if(isset($_SESSION['convenio'])) {
     ?>
     <div class="col padding-medium">
         <div class="col menu-li align-center hover-text-theme border padding-medium color-grey-light opacity radius pointer hover-opacity-off"
@@ -22,6 +36,18 @@ if ($read->getResult()) {
             <i class="font-xxxlarge material-icons">add_box</i>
             <span class="font-large col">Pontuar Multiplica</span>
         </div>
+        <?php
+        if (isset($_SESSION['convenio']['desconto_em_servicos']) && $_SESSION['convenio']['desconto_em_servicos']) {
+            ?>
+            <div class="col align-center border hover-text-theme padding-medium color-grey-light opacity radius pointer hover-opacity-off"
+                 style="margin-bottom: 5px"
+                 onclick="descontoServicos()">
+                <i class="font-xxxlarge material-icons">add_shopping_cart</i>
+                <span class="font-large col">Desconto em Serviço</span>
+            </div>
+            <?php
+        }
+        ?>
         <div class="col align-center border hover-text-theme padding-medium color-grey-light opacity radius pointer hover-opacity-off"
              style="margin-bottom: 5px"
              onclick="createCliente()">
@@ -38,16 +64,16 @@ if ($read->getResult()) {
                 <span class="font-large col">Funcionários</span>
             </div>
             <?php
-        }
-        if (isset($cred['desconto_em_servicos']) && $cred['desconto_em_servicos']) {
-            ?>
-            <div class="col menu-li align-center hover-text-theme border padding-medium color-grey-light opacity radius pointer hover-opacity-off"
-                 style="margin-bottom: 5px"
-                 data-entity='descontos' data-action="table">
-                <i class="font-xxxlarge material-icons">book</i>
-                <span class="font-large col">Tabela de Descontos</span>
-            </div>
-            <?php
+            if (isset($_SESSION['convenio']['desconto_em_servicos']) && $_SESSION['convenio']['desconto_em_servicos']) {
+                ?>
+                <div class="col menu-li align-center hover-text-theme border padding-medium color-grey-light opacity radius pointer hover-opacity-off"
+                     style="margin-bottom: 5px"
+                     data-entity='descontos' data-action="table">
+                    <i class="font-xxxlarge material-icons">book</i>
+                    <span class="font-large col">Tabela de Descontos</span>
+                </div>
+                <?php
+            }
         }
         ?>
         <!--<div class="col align-center border padding-medium margin-bottom color-grey-light opacity radius pointer hover-opacity-off" onclick="createPedido()"
@@ -76,13 +102,13 @@ if ($read->getResult()) {
         }
 
         function updateHistorico(dd, tt) {
-            if(typeof (tt) === "undefined")
+            if (typeof (tt) === "undefined")
                 toast("Pontos Aplicados");
 
             var $ref = $dash.find("#credenciado-historico-ref").html("");
             var $hist = $dash.find("#credenciado-historico");
             get('credenciado/read/historico', function (data) {
-                $ref.template(data.content.template, data.content, function(data) {
+                $ref.template(data.content.template, data.content, function (data) {
                     if (data !== "" && data !== $hist.html())
                         $hist.find("ul:eq(0)").replaceWith(data);
                 });
@@ -92,6 +118,14 @@ if ($read->getResult()) {
         function createTransacao() {
             mainLoading();
             get('credenciado/create/transacao', function (data) {
+                $dash.html(data.content);
+                updateHistorico(1, 1);
+            });
+        }
+
+        function descontoServicos() {
+            mainLoading();
+            get('credenciado/create/desconto', function (data) {
                 $dash.html(data.content);
                 updateHistorico(1, 1);
             });
