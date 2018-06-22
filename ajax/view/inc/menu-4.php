@@ -115,6 +115,34 @@ if(isset($_SESSION['convenio'])) {
             });
         }
 
+        function updateHistoricoDesconto(dd, tt) {
+            if (typeof (tt) === "undefined")
+                toast("Desconto Aplicados");
+
+            $("#descontoTotal, #descontoRecebidoTotal").html("");
+
+            var $ref = $dash.find("#credenciado-desconto-historico-ref").html("");
+            var $hist = $dash.find("#credenciado-desconto-historico");
+            get('credenciado/read/descontoHistorico', function (data) {
+                $ref.template(data.content.template, data.content, function (data) {
+                    if (data !== "" && data !== $hist.html())
+                        $hist.find("ul:eq(0)").replaceWith(data);
+                });
+            });
+        }
+
+        function readMoreHistoryDesc() {
+            var $ref = $dash.find("#credenciado-desconto-historico-ref").html("");
+            var $hist = $dash.find("#credenciado-desconto-historico");
+            $hist.loading();
+            get('credenciado/read/descontoHistoricoMore', function (data) {
+                $ref.template(data.content.template, data.content, function (data) {
+                    if (data !== "" && data !== $hist.html())
+                        $hist.find("ul:eq(0)").replaceWith(data);
+                });
+            });
+        }
+
         function createTransacao() {
             mainLoading();
             get('credenciado/create/transacao', function (data) {
@@ -127,7 +155,7 @@ if(isset($_SESSION['convenio'])) {
             mainLoading();
             get('credenciado/create/desconto', function (data) {
                 $dash.html(data.content);
-                updateHistorico(1, 1);
+                updateHistoricoDesconto(1, 1);
             });
         }
 
@@ -142,6 +170,22 @@ if(isset($_SESSION['convenio'])) {
             toast("Cliente Salvo!");
             createCliente();
         }
+
+        $(function() {
+            $("#dashboard").off("change", ".checkboxmult").on("change", ".checkboxmult", function () {
+                let total = 0;
+                let descontoTotal = 0;
+                $(".checkboxmult").each(function () {
+                    if($(this).is(":checked")) {
+                        let $div = $(this).siblings("div");
+                        total += parseFloat($div.find(".checkBoxDesconto").text());
+                        descontoTotal += parseFloat($div.find(".checkBoxValor").text()) - parseFloat($div.find(".checkBoxDesconto").text());
+                    }
+                });
+                $("#descontoTotal").html("R$" + total.toFixed(2));
+                $("#descontoRecebidoTotal").html("Desconto de R$" + descontoTotal.toFixed(2));
+            });
+        });
     </script>
     <?php
 }
