@@ -1,0 +1,5 @@
+{
+  "action": "update",
+  "entity": "credenciado_fisico",
+  "function": "4/associaCredenciadoFisicoDesconto"
+}

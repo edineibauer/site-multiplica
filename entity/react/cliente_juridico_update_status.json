@@ -1,0 +1,5 @@
+{
+  "entity": "cliente_p_juridica",
+  "action": "update",
+  "function": "clienteJuridicaUpdateStatusFuncionario"
+}

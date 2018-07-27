@@ -1,0 +1,5 @@
+{
+  "action": "update",
+  "entity": "credenciado_juridico",
+  "function": "4/associaCredenciadoJuridicoDesconto"
+}

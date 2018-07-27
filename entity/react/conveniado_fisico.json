@@ -1,0 +1,5 @@
+{
+  "entity": "cliente_p_fisica",
+  "action": "create",
+  "function": "conveniadoFisico"
+}
