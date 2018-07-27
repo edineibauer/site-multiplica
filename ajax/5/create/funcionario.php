@@ -3,14 +3,14 @@ if($_SESSION['userlogin']['setor'] === '5') {
 
     $listIdFisico = [];
     $read = new \ConnCrud\Read();
-    $read->exeRead(PRE . "conveniado_juridico_conveniado_fisico_conveniados_fisicos", "WHERE conveniado_juridico_id =:id", "id={$_SESSION['userlogin']['id']}");
+    $read->exeRead(PRE . "cliente_p_juridica_conveniados_fisicos", "WHERE cliente_p_juridica_id =:id", "id={$_SESSION['userlogin']['id']}");
     if($read->getResult()) {
         foreach ($read->getResult() as $item) {
-            $listIdFisico[] = $item['conveniado_fisico_id'];
+            $listIdFisico[] = $item['cliente_p_fisica_id'];
         }
     }
 
-    $table = new \Table\Table("conveniado_fisico");
+    $table = new \Table\Table("cliente_p_fisica");
     $table->setListaId($listIdFisico);
     $table = $table->getShow();
 
