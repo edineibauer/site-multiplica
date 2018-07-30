@@ -28,7 +28,7 @@ if ($read->getResult()) {
         $read->exeRead("clientes", "WHERE id = :ic", "ic={$item['conveniado_multiplica']}");
         $cpf = $read->getResult() ? $read->getResult()[0]['cpf'] : "Erro ao buscar Cliente";
 
-        $read->exeRead(PRE . "desconto_multiplica_descontos_descontos_multiplica", "WHERE desconto_multiplica_id = :dmi", "dmi={$item['id']}");
+        $read->exeRead(PRE . "desconto_multiplica_descontos_descontos", "WHERE desconto_multiplica_id = :dmi", "dmi={$item['id']}");
         if($read->getResult()) {
             foreach ($read->getResult() as $desc) {
                 $read->exeRead(PRE . "descontos", "WHERE id = :ii", "ii={$desc['descontos_id']}");

@@ -1,5 +1,5 @@
 {
-  "entity": "pontuar_multiplica",
   "action": "create",
-  "function": "transacao"
+  "entity": "pontuar_multiplica",
+  "function": "4/transacao"
 }
