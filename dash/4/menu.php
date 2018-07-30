@@ -44,14 +44,8 @@ if (isset($_SESSION['convenio'])) {
             <div class="col align-center border hover-text-theme padding-medium color-grey-light opacity radius pointer hover-opacity-off"
                  style="margin-bottom: 5px"
                  onclick="createTransacao()">
-                <i class="font-xxxlarge material-icons">add_box</i>
-                <span class="font-large col">Pontuar Multiplica</span>
-            </div>
-            <div class="col align-center border hover-text-theme padding-medium color-grey-light opacity radius pointer hover-opacity-off"
-                 style="margin-bottom: 5px"
-                 onclick="createCliente()">
-                <i class="font-xxxlarge material-icons">people</i>
-                <span class="font-large col">Novo Cliente</span>
+                <img src="<?=HOME . FAVICON ?>" width="47" height="47" style="height: 47px; width: 47px" alt="pontuar imagem">
+                <span class="font-large col">Pontuar CashBack</span>
             </div>
             <?php
         }
@@ -59,8 +53,8 @@ if (isset($_SESSION['convenio'])) {
         <div class="col align-center border hover-text-theme padding-medium color-grey-light opacity radius pointer hover-opacity-off"
              style="margin-bottom: 5px"
              onclick="descontoServicos()">
-            <i class="font-xxxlarge material-icons">add_shopping_cart</i>
-            <span class="font-large col">Desconto em Serviço</span>
+            <i class="font-xxxlarge material-icons">money_off</i>
+            <span class="font-large col">Descontos Multiplica</span>
         </div>
         <?php
         if ($_SESSION['userlogin']['nivel'] === "1") {
@@ -68,8 +62,18 @@ if (isset($_SESSION['convenio'])) {
             <div class="col menu-li align-center hover-text-theme border padding-medium color-grey-light opacity radius pointer hover-opacity-off"
                  style="margin-bottom: 5px"
                  data-entity='funcionario_credenciado' data-action="table">
-                <i class="font-xxxlarge material-icons">people_outline</i>
+                <i class="font-xxxlarge material-icons">work</i>
                 <span class="font-large col">Funcionários</span>
+            </div>
+            <?php
+        }
+        if (!empty($_SESSION['convenio']['cashback'])) {
+            ?>
+            <div class="col align-center border hover-text-theme padding-medium color-grey-light opacity radius pointer hover-opacity-off"
+                 style="margin-bottom: 5px"
+                 onclick="createCliente()">
+                <i class="font-xxxlarge material-icons">group_add</i>
+                <span class="font-large col">Adicionar Cliente</span>
             </div>
             <?php
         }

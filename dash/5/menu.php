@@ -1,9 +1,9 @@
 <?php
 $date = new \Helpers\DateTime();
 $read = new \ConnCrud\Read();
-$read->exeRead(PRE . "cliente_p_juridica", "WHERE usuarios = :id", "id={$_SESSION['userlogin']['id']}");
+$read->exeRead(PRE . "cliente_p_juridica", "WHERE usuario = :id", "id={$_SESSION['userlogin']['id']}");
 if (!$read->getResult()) {
-    $read->exeRead(PRE . "cliente_p_fisica", "WHERE usuarios = :id", "id={$_SESSION['userlogin']['id']}");
+    $read->exeRead(PRE . "cliente_p_fisica", "WHERE usuario = :id", "id={$_SESSION['userlogin']['id']}");
     if ($read->getResult() && !isset($_SESSION['userlogin']['cliente'])) {
         $_SESSION['userlogin']['cliente'] = "PF";
         $_SESSION['userlogin']['clienteId'] = $read->getResult()[0]['id'];
@@ -45,7 +45,7 @@ if ($read->getResult()) {
         <div class="col align-center border padding-medium margin-bottom color-grey-light opacity radius pointer hover-opacity-off menu-li"
              data-action="table" data-entity="clientes">
             <i class="font-xxxlarge material-icons">people</i>
-            <span class="font-large col">Funcionários</span>
+            <span class="font-large col">Usuários</span>
         </div>
 
         <div class="col align-center border padding-medium margin-bottom color-grey-light opacity radius pointer hover-opacity-off menu-li"

@@ -38,7 +38,7 @@ if ($read->getResult()) {
                 }
             }
         }
-        $dados .= "<li class='col'><button class='btn-floating theme-d2 pointer opacity hover-opacity-off hover-shadow'><i class='material-icons left padding-right'>print</i></button>"
+        $dados .= "<li class='col'><button class='btn-floating theme pointer opacity hover-opacity-off hover-shadow'><i class='material-icons left padding-right'>print</i></button>"
             . "<div class='left padding-8 container'>"
             . "<span class='color-text-grey'>[{$datetime->getDateTime($item['data'], 'd/m H:i')}]</span>"
             . "&nbsp;&nbsp;&nbsp;"

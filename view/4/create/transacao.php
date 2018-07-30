@@ -6,7 +6,7 @@ $data['data'] = "<div class='col padding-large s-padding-tiny s-padding-24 paddi
     . $form->getForm()
     . "</div>"
     . "<div class='col border radius'>"
-    . "<h4 class='color-text-grey padding-medium theme-l3 upper'>Histórico de Pontuação</h4>"
+    . "<h4 class='color-text-grey padding-medium theme upper'>Histórico de Pontuação</h4>"
     . "<div class='col padding-medium' id='credenciado-historico'><ul></ul></div>"
     . "<div class='col hide' id='credenciado-historico-ref'></div>"
     . "</div>"
