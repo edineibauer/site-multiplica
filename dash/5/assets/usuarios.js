@@ -1,6 +1,7 @@
 function searchUsuario() {
     let cpf = $("#novo_usuario_cpf").cleanVal();
     if(cpf.length === 11) {
+        mainLoading();
         get("view/search-usuario/" + cpf, function (g) {
             if(g.content == "2"){
                 toast("Permissão Negada", "error", 2000);
@@ -56,10 +57,12 @@ function removerUsuario(id) {
 }
 
 function goUsuarios() {
+    mainLoading();
     $("#usuarios_list").trigger("click");
 }
 
 function addUsuario() {
+    mainLoading();
     get('view/add-usuario', function (g) {
         $("#dashboard").html(g.content);
         $("#novo_usuario_cpf").mask('999.999.999-99', {reverse: !0}).focus().off("keyup").on("keyup", function (e) {
@@ -74,7 +77,6 @@ function addUsuario() {
 }
 
 function addUsuarioCriado(dados) {
-    console.log(dados);
     addUsuarioExistente(dados['dados.id'])
 }
 
