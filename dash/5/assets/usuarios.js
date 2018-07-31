@@ -2,10 +2,14 @@ function searchUsuario() {
     let cpf = $("#novo_usuario_cpf").cleanVal();
     if(cpf.length === 11) {
         get("view/search-usuario/" + cpf, function (g) {
-            $("#dashboard").html(g.content);
-            setTimeout(function () {
-                $("input[data-model='dados.nome_completo']").focus();
-            },10);
+            if(g.content == "2"){
+                toast("Permissão Negada", "error", 2000);
+            } else {
+                $("#dashboard").html(g.content);
+                setTimeout(function () {
+                    $("input[data-model='dados.nome_completo']").focus();
+                }, 10);
+            }
         });
     } else {
         toast("Por Favor, informe um CPF!");
@@ -19,6 +23,8 @@ function desativarUsuario(id) {
                 toast("Usuário Desativado", 2000);
             },10);
             goUsuarios();
+        } else {
+            toast("Permissão Negada", "error", 2000);
         }
     });
 }
@@ -30,6 +36,8 @@ function ativarUsuario(id) {
                 toast("Usuário Ativado", 2000);
             },10);
             goUsuarios();
+        } else {
+            toast("Permissão Negada", "error", 2000);
         }
     });
 }
@@ -41,6 +49,8 @@ function removerUsuario(id) {
                 toast("Usuário Removido", 2000);
             },10);
             goUsuarios();
+        } else {
+            toast("Permissão Negada", "error", 2000);
         }
     });
 }

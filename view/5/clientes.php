@@ -21,7 +21,7 @@ foreach ($read->getResult() as $cliente) {
     }
 }
 
-$dados['allow'] = !(date('d') < 4);
+$dados['allow'] = !(date('d') > 4);
 
 $tpl = new \Helpers\Template("site-multiplica");
 $data['data'] = $tpl->getShow("5/usuarios", $dados);

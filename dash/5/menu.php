@@ -5,7 +5,7 @@ if (empty($_SESSION['convenio']))
 if (!empty($_SESSION['convenio'])) {
 
     define('HOMEDEV', HOME . (DOMINIO === 'site-multiplica' ? "" : VENDOR . "site-multiplica/"));
-    $allow = !(date('d') < 4);
+    $allow = !(date('d') > 4);
     $tempo = $_SESSION['convenio']['intervalo'];
     $tempo = ($tempo[0] > 0 ? $tempo[0] . " ano" . ($tempo[0] > 1 ? "s e " : " e ") . $tempo[1] . ($tempo[1] > 1 ? " meses" : " mês") : ($tempo[1] > 0 ? $tempo[1] . ($tempo[1] > 1 ? " meses e " : " mês e ") . $tempo[2] . " dias" : $tempo[2] . " dias"));
     ?>
