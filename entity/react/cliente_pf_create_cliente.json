@@ -1,0 +1,5 @@
+{
+  "action": "create",
+  "entity": "cliente_p_fisica",
+  "function": "5/createCliente"
+}
