@@ -8,10 +8,10 @@
         <div class="z-depth-2 color-white radius border padding-xxlarge col">
             <label class="col s12 m8 l10">
                 <span class="col font-small">CPF</span>
-                <input type="text" class="col" id="novo_usuario_cpf" placeholder="informe o CPF">
+                <input type="text" class="col" id="novo_funcionario_cpf" placeholder="informe o CPF">
             </label>
             <div class="col s12 m4 l2" style="padding-top: 15px;">
-                <button class="button theme col" id="novo_usuario_btn">Avançar</button>
+                <button class="button theme col" id="novo_funcionario_btn">Avançar</button>
             </div>
         </div>
     </div>
