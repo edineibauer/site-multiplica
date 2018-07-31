@@ -1,10 +1,9 @@
 <?php
 if (empty($_SESSION['convenio']))
-    include_once PATH_HOME . "dash/5/inc/base.php";
+    include_once PATH_HOME . DEV_PATH . "dash/5/inc/base.php";
 
 if (!empty($_SESSION['convenio'])) {
 
-    define('HOMEDEV', HOME . (DOMINIO === 'site-multiplica' ? "" : VENDOR . "site-multiplica/"));
     $allow = !(date('d') > 4);
     $tempo = $_SESSION['convenio']['intervalo'];
     $tempo = ($tempo[0] > 0 ? $tempo[0] . " ano" . ($tempo[0] > 1 ? "s e " : " e ") . $tempo[1] . ($tempo[1] > 1 ? " meses" : " mês") : ($tempo[1] > 0 ? $tempo[1] . ($tempo[1] > 1 ? " meses e " : " mês e ") . $tempo[2] . " dias" : $tempo[2] . " dias"));
@@ -34,8 +33,8 @@ if (!empty($_SESSION['convenio'])) {
             <span class="font-large col">Faturas</span>
         </div>
     </div>
-    <script src="<?=HOMEDEV?>dash/5/assets/mask.js"></script>
-    <script src="<?=HOMEDEV?>dash/5/assets/base.js"></script>
+    <script src="<?=HOME . DEV_PATH?>dash/5/assets/mask.js"></script>
+    <script src="<?=HOME . DEV_PATH?>dash/5/assets/base.js"></script>
     <?php
     if($allow)
         echo '<script src="' . HOMEDEV. 'dash/5/assets/usuarios.js"></script>';
