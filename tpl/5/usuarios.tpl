@@ -23,6 +23,12 @@
             <th class="left padding-4 padding-medium">
                 Nome
             </th>
+            <th class="left padding-4 padding-medium">
+                CPF
+            </th>
+            <th class="left padding-4 padding-medium">
+                Data de Nascimento
+            </th>
             <th class="right align-right padding-4 padding-medium">
                 Ação
             </th>
@@ -34,6 +40,12 @@
                 <tr class="col">
                     <td class="left padding-xlarge">
                         {$u.nome_completo}
+                    </td>
+                    <td class="left padding-xlarge">
+                        {$u.cpf}
+                    </td>
+                    <td class="left padding-xlarge">
+                        {$u.data_de_nascimento}
                     </td>
                     <td class="right">
                         {($u.status_do_convenio == 1) ? "<button class='button color-grey-light hover-color-red opacity {(!$allow)?"disabled" : "hover-opacity-off hover-shadow"}' onclick='desativarUsuario({$u.id})'>desativar</button>" : "<button class='button right color-grey-light hover-color-red opacity {(!$allow)?"disabled" : "hover-opacity-off hover-shadow"}' onclick='removerUsuario({$u.id})'>remover</button><button class='button theme opacity right {(!$allow)?"disabled" : "hover-opacity-off hover-shadow"}' onclick='ativarUsuario({$u.id})'>Ativar</button>"}

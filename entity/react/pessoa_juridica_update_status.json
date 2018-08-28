@@ -1,0 +1,5 @@
+{
+  "entity": "pessoas_juridicas",
+  "action": ["update", "create"],
+  "function": "2/pessoas_juridicas/clienteStatus"
+}

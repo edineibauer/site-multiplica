@@ -37,7 +37,7 @@ if (!empty($_SESSION['convenio'])) {
     <script src="<?=HOME . DEV_PATH?>dash/5/assets/base.js"></script>
     <?php
     if($allow)
-        echo '<script src="' . HOMEDEV. 'dash/5/assets/usuarios.js"></script>';
+        echo '<script src="' . HOME . DEV_PATH. 'dash/5/assets/usuarios.js"></script>';
 } else {
     $l = new \SessionControl\Login();
     $l->logOut();

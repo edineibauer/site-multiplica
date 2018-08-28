@@ -46,7 +46,7 @@
         function clienteFisico() {
             mainLoading();
             post('site-multiplica', '5/update/perfil', {}, function (data) {
-                $("#dashboard").html(data.content)
+                $("#dashboard").html(data)
             }, true);
         }
     </script>
