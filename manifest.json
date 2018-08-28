@@ -1,0 +1,29 @@
+{
+  "name": "Multiplica",
+  "short_name": "Multiplica",
+  "icons": [{
+    "src": "image/uploads/image/2018/07/favicon-multiplica.png&w=128&h=128",
+    "sizes": "128x128",
+    "type": "image/png"
+  }, {
+    "src": "image/uploads/image/2018/07/favicon-multiplica.png&w=144&h=144",
+    "sizes": "144x144",
+    "type": "image/png"
+  }, {
+    "src": "image/uploads/image/2018/07/favicon-multiplica.png&w=152&h=152",
+    "sizes": "152x152",
+    "type": "image/png"
+  }, {
+    "src": "image/uploads/image/2018/07/favicon-multiplica.png&w=192&h=192",
+    "sizes": "192x192",
+    "type": "image/png"
+  }, {
+    "src": "image/uploads/image/2018/07/favicon-multiplica.png&w=256&h=256",
+    "sizes": "256x256",
+    "type": "image/png"
+  }],
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#71357D",
+  "theme_color": "#fff"
+}
