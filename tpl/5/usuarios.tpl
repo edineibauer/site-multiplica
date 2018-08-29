@@ -17,19 +17,22 @@
             <i class="material-icons left padding-right">add</i>Usuário
         </button>
     </div>
-    <table class='col margin-top border color-white radius table striped'>
-        <thead class="col padding-4 padding-medium color-grey-light">
-        <tr class="col">
-            <th class="left padding-4 padding-medium">
+
+    <div class="col padding-4"></div>
+
+    <table class='table-all striped'>
+        <theadcolor-grey-light">
+        <tr>
+            <th>
                 Nome
             </th>
-            <th class="left padding-4 padding-medium">
+            <th>
                 CPF
             </th>
-            <th class="left padding-4 padding-medium">
+            <th>
                 Data de Nascimento
             </th>
-            <th class="right align-right padding-4 padding-medium">
+            <th class="right padding-right">
                 Ação
             </th>
         </tr>
@@ -37,18 +40,18 @@
         <tbody>
         {if $usuarios}
             {foreach key=k item=u from=$usuarios}
-                <tr class="col">
-                    <td class="left padding-xlarge">
+                <tr>
+                    <td class="padding-12">
                         {$u.nome_completo}
                     </td>
-                    <td class="left padding-xlarge">
+                    <td class="padding-12">
                         {$u.cpf}
                     </td>
-                    <td class="left padding-xlarge">
+                    <td class="padding-12">
                         {$u.data_de_nascimento}
                     </td>
                     <td class="right">
-                        {($u.status_do_convenio == 1) ? "<button class='button color-grey-light hover-color-red opacity {(!$allow)?"disabled" : "hover-opacity-off hover-shadow"}' onclick='desativarUsuario({$u.id})'>desativar</button>" : "<button class='button right color-grey-light hover-color-red opacity {(!$allow)?"disabled" : "hover-opacity-off hover-shadow"}' onclick='removerUsuario({$u.id})'>remover</button><button class='button theme opacity right {(!$allow)?"disabled" : "hover-opacity-off hover-shadow"}' onclick='ativarUsuario({$u.id})'>Ativar</button>"}
+                        {($u.plano.status == 1) ? "<button class='button color-grey-light hover-color-red opacity {(!$allow)?"disabled" : "hover-opacity-off hover-shadow"}' onclick='desativarUsuario({$u.id})'>desativar</button>" : "<button class='button right color-grey-light hover-color-red opacity {(!$allow)?"disabled" : "hover-opacity-off hover-shadow"}' onclick='removerUsuario({$u.id})'>remover</button><button class='button theme opacity right {(!$allow)?"disabled" : "hover-opacity-off hover-shadow"}' onclick='ativarUsuario({$u.id})'>Ativar</button>"}
                     </td>
                 </tr>
             {/foreach}

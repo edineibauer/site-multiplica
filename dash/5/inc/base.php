@@ -1,19 +1,11 @@
 <?php
 
 $read = new \ConnCrud\Read();
-$read->exeRead(PRE . "cliente_p_juridica", "WHERE usuario = :id", "id={$_SESSION['userlogin']['id']}");
-if (!$read->getResult()) {
-    $read->exeRead(PRE . "cliente_p_fisica", "WHERE usuario = :id", "id={$_SESSION['userlogin']['id']}");
-    if ($read->getResult() && !isset($_SESSION['convenio'])) {
-        $_SESSION['convenio'] = $read->getResult()[0];
-        $_SESSION['convenio']['type'] = 0;
-    }
-} elseif (!isset($_SESSION['userlogin']['cliente'])) {
+$read->exeRead(PRE . "pessoas_juridicas", "WHERE usuario = :id", "id={$_SESSION['userlogin']['id']}");
+if ($read->getResult()) {
+    //if (!isset($_SESSION['userlogin']['cliente']))
     $_SESSION['convenio'] = $read->getResult()[0];
     $_SESSION['convenio']['type'] = 1;
-}
-
-if (!empty($_SESSION['convenio'])) {
 
     function contrato(int $id)
     {
@@ -47,7 +39,7 @@ if (!empty($_SESSION['convenio'])) {
     $intervalo = $data1->diff($data2);
     $_SESSION['convenio']['intervalo'] = [$intervalo->y, $intervalo->m, $intervalo->d];
 
-    $read->exeRead("planos", "WHERE id = :id", "id={$_SESSION['convenio']['plano']}");
+    $read->exeRead("tipos_de_planos", "WHERE id = :id", "id={$_SESSION['convenio']['plano']}");
     $_SESSION['convenio']['plano'] = $read->getResult() ? $read->getResult()[0] : "";
     $_SESSION['convenio']['plano']['contrato_de'] = contrato($_SESSION['convenio']['plano']['contrato_de']);
 }
