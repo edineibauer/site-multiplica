@@ -24,4 +24,4 @@ if ($_SESSION['userlogin']['setor'] > 3 && $_SESSION['userlogin']['setor'] < 7 &
 }
 
 if (isset($_SESSION['convenio']))
-    include_once PATH_HOME . 'view/4/include/menu.php';
+    include_once PATH_HOME . DEV_PATH . 'dash/4/inc/menu.php';

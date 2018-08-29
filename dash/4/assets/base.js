@@ -36,14 +36,14 @@ function updateHistoricoDesconto(dd, tt) {
 }
 
 function readMoreHistoryDesc() {
-    var $ref = $dash.find("#credenciado-desconto-historico-ref").html("");
+    /*var $ref = $dash.find("#credenciado-desconto-historico-ref").html("");
     var $hist = $dash.find("#credenciado-desconto-historico");
     $hist.loading();
     get('4/read/descontoHistoricoMore', function (data) {
         $ref.template(data.content.template, data.content, function (data) {
             $hist.html(data.content);
         });
-    });
+    });*/
 }
 
 function createTransacao() {
