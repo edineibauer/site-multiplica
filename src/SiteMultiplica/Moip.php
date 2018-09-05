@@ -3,7 +3,7 @@
 use Moip\Moip;
 use Moip\Auth\BasicAuth;
 
-class Moip
+class Moips
 {
     private $token;
     private $key;

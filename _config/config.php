@@ -16,7 +16,7 @@ define('WWW', '');
 define('DOMINIO', 'site-multiplica');
 define('SITESUB', '');
 define('HOME', 'http://localhost/site-multiplica/');
-define('PATH_HOME', 'C:/wamp64/www\site-multiplica/');
+define('PATH_HOME', 'D:/wampServer/www/site-multiplica/');
 define('LOGO', 'uploads/image/2018/07/logo.jpg');
 define('FAVICON', 'uploads/image/2018/07/favicon-multiplica.png');
 define('VERSION', '1.78');

@@ -14,12 +14,26 @@ require_once './vendor/autoload.php';
 $file = filter_input(INPUT_POST, 'file', FILTER_DEFAULT);
 $lib = filter_input(INPUT_POST, 'lib', FILTER_DEFAULT);
 $data = ["response" => 1, "error" => "", "data" => ""];
-$url = strip_tags(trim($_GET['data']));
-$include = PATH_HOME . "ajax/" . $url . ".php";
+$url = explode('/', strip_tags(trim($_GET['data'])));
+$include = PATH_HOME . "ajax/app";
+$find = false;
+$var = [];
+foreach ($url as $i => $u) {
+    if ($i > 0) {
+        if (!$find && file_exists($include . "/{$u}.php")) {
+            $include .= "/{$u}.php";
+            $find = true;
+        } elseif ($find) {
+            $var[] = $u;
+        } else {
+            $include .= "/{$u}";
+        }
+    }
+}
 
-if (isset($include)) {
+if ($find) {
     new \LinkControl\Sessao();
-    if (\Helpers\Check::ajax()) {
+    if (!\Helpers\Check::ajax()) {
         include_once $include;
 
         if (!isset($data) || !isset($data['response']) || !in_array($data['response'], [1, 2, 3, 4]))
