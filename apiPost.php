@@ -48,6 +48,6 @@ if ($find) {
     $data["response"] = 4;
 }
 
-echo json_encode($data);
+echo json_encode($data, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
 
 ob_get_flush();
