@@ -15,19 +15,17 @@ $file = filter_input(INPUT_POST, 'file', FILTER_DEFAULT);
 $lib = filter_input(INPUT_POST, 'lib', FILTER_DEFAULT);
 $data = ["response" => 1, "error" => "", "data" => ""];
 $url = explode('/', strip_tags(trim($_GET['data'])));
-$include = PATH_HOME . "ajax/app";
+$include = PATH_HOME . "ajax";
 $find = false;
 $var = [];
 foreach ($url as $i => $u) {
-    if ($i > 0) {
-        if (!$find && file_exists($include . "/{$u}.php")) {
-            $include .= "/{$u}.php";
-            $find = true;
-        } elseif ($find) {
-            $var[] = $u;
-        } else {
-            $include .= "/{$u}";
-        }
+    if (!$find && file_exists($include . "/{$u}.php")) {
+        $include .= "/{$u}.php";
+        $find = true;
+    } elseif ($find) {
+        $var[] = $u;
+    } else {
+        $include .= "/{$u}";
     }
 }
 

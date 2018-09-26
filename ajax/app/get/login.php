@@ -5,13 +5,13 @@ $data = ['response' => 2, "error" => "", "data" => ""];
 if (!empty($_POST['user']))
     $user = trim(strip_tags(filter_input(INPUT_POST, 'user', FILTER_DEFAULT)));
 else
-    $data['error'] = "parâmetro user não recebido. (pode ser passado o valor do CPF, email ou telefone)";
+    $data['error'] = "parâmetro 'user' não recebido. (pode ser passado o valor do CPF, email ou telefone)";
 
 /*Obtém senha*/
 if (!empty($_POST['password']))
     $pass = (string)\Helpers\Check::password(trim(filter_input(INPUT_POST, 'password', FILTER_DEFAULT)));
 else
-    $data['error'] = "parâmetro senha não recebido.";
+    $data['error'] = "parâmetro 'password' não recebido.";
 
 /* VERIFICA CPF MASCARA */
 if(preg_match('/\d{3}.\d{3}-\d{2}/i', $user))
