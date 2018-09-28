@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "42b0f7f93440a43f52c4ce6b2da6b261",
+    "content-hash": "d31cd039c8db6a58719428ecc2b457ee",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -60,22 +60,22 @@
         },
         {
             "name": "conn/config",
-            "version": "dev-master",
+            "version": "1.4.02",
             "source": {
                 "type": "git",
                 "url": "https://github.com/edineibauer/config.git",
-                "reference": "67fb5cc98ee5ba72395c2c613624611bd76312bf"
+                "reference": "38b12240a1803be45800ac6fd8acbf1a03768597"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/edineibauer/config/zipball/67fb5cc98ee5ba72395c2c613624611bd76312bf",
-                "reference": "67fb5cc98ee5ba72395c2c613624611bd76312bf",
+                "url": "https://api.github.com/repos/edineibauer/config/zipball/38b12240a1803be45800ac6fd8acbf1a03768597",
+                "reference": "38b12240a1803be45800ac6fd8acbf1a03768597",
                 "shasum": ""
             },
             "require": {
-                "conn/entity": "dev-master",
-                "conn/link-control": "dev-master",
-                "php": "^7.0"
+                "conn/entity": "1.9.*",
+                "conn/link-control": "1.5.*",
+                "php": "^7.2"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -89,24 +89,24 @@
                 }
             ],
             "description": "Configurações base para novo projeto",
-            "time": "2018-07-27 17:54:06"
+            "time": "2018-09-26T21:21:42+00:00"
         },
         {
             "name": "conn/conn-crud",
-            "version": "dev-master",
+            "version": "1.3.00",
             "source": {
                 "type": "git",
                 "url": "https://github.com/edineibauer/conn-crud.git",
-                "reference": "87ffebffa0a5e47808fcaa4b85517ad08fc11db4"
+                "reference": "cecd8e543f338834bec3771f4fef54f2933c88d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/edineibauer/conn-crud/zipball/87ffebffa0a5e47808fcaa4b85517ad08fc11db4",
-                "reference": "87ffebffa0a5e47808fcaa4b85517ad08fc11db4",
+                "url": "https://api.github.com/repos/edineibauer/conn-crud/zipball/cecd8e543f338834bec3771f4fef54f2933c88d3",
+                "reference": "cecd8e543f338834bec3771f4fef54f2933c88d3",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.0"
+                "php": "^7.2"
             },
             "type": "library",
             "autoload": {
@@ -124,27 +124,27 @@
                     "email": "edineibauer@gmail.com"
                 }
             ],
-            "description": "Conexão ao banco de  dados para operações CRUD",
-            "time": "2018-04-26 15:58:47"
+            "description": "Conexão ao banco de  dados Mysql para operações CRUD",
+            "time": "2018-09-26T18:31:31+00:00"
         },
         {
             "name": "conn/dashboard",
-            "version": "dev-master",
+            "version": "2.0.03",
             "source": {
                 "type": "git",
                 "url": "https://github.com/edineibauer/dashboard.git",
-                "reference": "fad655a76a0e87e028a673537325d3d4434491ff"
+                "reference": "eef329812e2a89a3c763184e3c1b7639ad69df0b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/edineibauer/dashboard/zipball/fad655a76a0e87e028a673537325d3d4434491ff",
-                "reference": "fad655a76a0e87e028a673537325d3d4434491ff",
+                "url": "https://api.github.com/repos/edineibauer/dashboard/zipball/eef329812e2a89a3c763184e3c1b7639ad69df0b",
+                "reference": "eef329812e2a89a3c763184e3c1b7639ad69df0b",
                 "shasum": ""
             },
             "require": {
-                "conn/session-control": "dev-master",
-                "conn/table": "dev-master",
-                "php": "^7.0",
+                "conn/session-control": "1.6.*",
+                "conn/table": "1.3.*",
+                "php": "^7.2",
                 "smottt/wideimage": "^1.1"
             },
             "type": "library",
@@ -164,28 +164,27 @@
                 }
             ],
             "description": "Controle do Login de usuários no sistema. Tela de boas vindas, resumo e administração",
-            "time": "2018-07-26 19:42:52"
+            "time": "2018-09-26T21:01:49+00:00"
         },
         {
             "name": "conn/email-control",
-            "version": "dev-master",
+            "version": "1.3.00",
             "source": {
                 "type": "git",
                 "url": "https://github.com/edineibauer/email-control.git",
-                "reference": "8d0f4935bb2f66348088b58e9f37738d565c5ad3"
+                "reference": "6cdaad971cde808ccf80ed866063fd2645671a2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/edineibauer/email-control/zipball/8d0f4935bb2f66348088b58e9f37738d565c5ad3",
-                "reference": "8d0f4935bb2f66348088b58e9f37738d565c5ad3",
+                "url": "https://api.github.com/repos/edineibauer/email-control/zipball/6cdaad971cde808ccf80ed866063fd2645671a2e",
+                "reference": "6cdaad971cde808ccf80ed866063fd2645671a2e",
                 "shasum": ""
             },
             "require": {
-                "conn/helpers": "dev-master",
+                "conn/helpers": "1.5.*",
                 "guzzlehttp/guzzle": "^6.3",
-                "php": "^7.0",
+                "php": "^7.2",
                 "php-http/guzzle6-adapter": "^1.1",
-                "smarty/smarty": "~3",
                 "sparkpost/sparkpost": "^2.1"
             },
             "type": "library",
@@ -205,25 +204,25 @@
                 }
             ],
             "description": "Controle de Email, Envio de Email, Templates de Email",
-            "time": "2018-07-20 18:59:24"
+            "time": "2018-09-26T18:55:38+00:00"
         },
         {
             "name": "conn/entity",
-            "version": "dev-master",
+            "version": "1.9.00",
             "source": {
                 "type": "git",
                 "url": "https://github.com/edineibauer/entity.git",
-                "reference": "06bdb80fd4c65d696b58a73fb1da2cc3a6cd3e5b"
+                "reference": "1f5bee3bf5ad44d52539fc1ff8584f15675f6d86"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/edineibauer/entity/zipball/06bdb80fd4c65d696b58a73fb1da2cc3a6cd3e5b",
-                "reference": "06bdb80fd4c65d696b58a73fb1da2cc3a6cd3e5b",
+                "url": "https://api.github.com/repos/edineibauer/entity/zipball/1f5bee3bf5ad44d52539fc1ff8584f15675f6d86",
+                "reference": "1f5bee3bf5ad44d52539fc1ff8584f15675f6d86",
                 "shasum": ""
             },
             "require": {
-                "conn/entity-form": "dev-master",
-                "php": "^7.0"
+                "conn/entity-form": "1.9.*",
+                "php": "^7.2"
             },
             "type": "library",
             "autoload": {
@@ -242,26 +241,26 @@
                 }
             ],
             "description": "Entidades de um sistema",
-            "time": "2018-07-26 19:05:56"
+            "time": "2018-09-26T18:46:15+00:00"
         },
         {
             "name": "conn/entity-form",
-            "version": "dev-master",
+            "version": "1.9.05",
             "source": {
                 "type": "git",
                 "url": "https://github.com/edineibauer/entity-form.git",
-                "reference": "515b0c81978a38f7f31d4fa506f2aac98cfd3502"
+                "reference": "6a4074b72bc3074b5ecef0d17dcad86812000182"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/edineibauer/entity-form/zipball/515b0c81978a38f7f31d4fa506f2aac98cfd3502",
-                "reference": "515b0c81978a38f7f31d4fa506f2aac98cfd3502",
+                "url": "https://api.github.com/repos/edineibauer/entity-form/zipball/6a4074b72bc3074b5ecef0d17dcad86812000182",
+                "reference": "6a4074b72bc3074b5ecef0d17dcad86812000182",
                 "shasum": ""
             },
             "require": {
-                "conn/config": "dev-master",
-                "conn/conn-crud": "dev-master",
-                "php": "^7.0"
+                "conn/config": "1.4.*",
+                "conn/conn-crud": "1.3.*",
+                "php": "^7.2"
             },
             "type": "library",
             "autoload": {
@@ -280,25 +279,25 @@
                 }
             ],
             "description": "Gerência as Entidades de um sistema. Controlando com uma interface de usuário vinculada ao banco.",
-            "time": "2018-07-27 17:40:59"
+            "time": "2018-09-28T13:05:28+00:00"
         },
         {
             "name": "conn/form-crud",
-            "version": "dev-master",
+            "version": "1.8.05",
             "source": {
                 "type": "git",
                 "url": "https://github.com/edineibauer/form-crud.git",
-                "reference": "a28362715b72eb662c1e647d1c542bde7aa1b351"
+                "reference": "ec4b8e06f122862f46d6c23237b76c6b4613cbcf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/edineibauer/form-crud/zipball/a28362715b72eb662c1e647d1c542bde7aa1b351",
-                "reference": "a28362715b72eb662c1e647d1c542bde7aa1b351",
+                "url": "https://api.github.com/repos/edineibauer/form-crud/zipball/ec4b8e06f122862f46d6c23237b76c6b4613cbcf",
+                "reference": "ec4b8e06f122862f46d6c23237b76c6b4613cbcf",
                 "shasum": ""
             },
             "require": {
-                "conn/entity": "dev-master",
-                "php": "^7.0"
+                "conn/entity": "1.9.*",
+                "php": "^7.2"
             },
             "type": "library",
             "autoload": {
@@ -317,24 +316,24 @@
                 }
             ],
             "description": "criar de forma automática formulários para manipulação de informações de uma tabela",
-            "time": "2018-07-28 00:34:45"
+            "time": "2018-09-28T12:59:50+00:00"
         },
         {
             "name": "conn/helpers",
-            "version": "dev-master",
+            "version": "1.5.00",
             "source": {
                 "type": "git",
                 "url": "https://github.com/edineibauer/helpers.git",
-                "reference": "2fef52acfb500ec3515fc374635bd1a55ed23ec1"
+                "reference": "24ef8130bb7d0cd6e4978eb2ee90879634adf53b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/edineibauer/helpers/zipball/2fef52acfb500ec3515fc374635bd1a55ed23ec1",
-                "reference": "2fef52acfb500ec3515fc374635bd1a55ed23ec1",
+                "url": "https://api.github.com/repos/edineibauer/helpers/zipball/24ef8130bb7d0cd6e4978eb2ee90879634adf53b",
+                "reference": "24ef8130bb7d0cd6e4978eb2ee90879634adf53b",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.0",
+                "php": "^7.2",
                 "smarty/smarty": "~3"
             },
             "type": "library",
@@ -354,27 +353,26 @@
                 }
             ],
             "description": "Classes de ajuda em geral para diversas tarefas secundárias",
-            "time": "2018-07-26 13:59:58"
+            "time": "2018-09-26T18:34:58+00:00"
         },
         {
             "name": "conn/link-control",
-            "version": "dev-master",
+            "version": "1.5.01",
             "source": {
                 "type": "git",
                 "url": "https://github.com/edineibauer/link-control.git",
-                "reference": "27d0d73a78512a8a4f7f4afa8ebe4e1f02518867"
+                "reference": "3f24c49b5ab1c2acf2ddff8113697d63af757f3e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/edineibauer/link-control/zipball/27d0d73a78512a8a4f7f4afa8ebe4e1f02518867",
-                "reference": "27d0d73a78512a8a4f7f4afa8ebe4e1f02518867",
+                "url": "https://api.github.com/repos/edineibauer/link-control/zipball/3f24c49b5ab1c2acf2ddff8113697d63af757f3e",
+                "reference": "3f24c49b5ab1c2acf2ddff8113697d63af757f3e",
                 "shasum": ""
             },
             "require": {
-                "conn/helpers": "dev-master",
-                "matthiasmullie/minify": "^1.3",
-                "php": "^7.0",
-                "smarty/smarty": "~3.1"
+                "conn/helpers": "1.5.*",
+                "matthiasmullie/minify": "1.3.*",
+                "php": "^7.2"
             },
             "type": "library",
             "autoload": {
@@ -393,27 +391,26 @@
                 }
             ],
             "description": "Controle de Link para requests de url",
-            "time": "2018-07-27 17:50:32"
+            "time": "2018-09-26T19:15:27+00:00"
         },
         {
             "name": "conn/session-control",
-            "version": "dev-master",
+            "version": "1.6.00",
             "source": {
                 "type": "git",
                 "url": "https://github.com/edineibauer/session-control.git",
-                "reference": "72babbec699d92d89d408edf5250b8891e3fe709"
+                "reference": "d3c5f3e444f2b331193d4c46bf7dbceef56ea2d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/edineibauer/session-control/zipball/72babbec699d92d89d408edf5250b8891e3fe709",
-                "reference": "72babbec699d92d89d408edf5250b8891e3fe709",
+                "url": "https://api.github.com/repos/edineibauer/session-control/zipball/d3c5f3e444f2b331193d4c46bf7dbceef56ea2d1",
+                "reference": "d3c5f3e444f2b331193d4c46bf7dbceef56ea2d1",
                 "shasum": ""
             },
             "require": {
-                "conn/email-control": "dev-master",
-                "conn/form-crud": "dev-master",
+                "conn/dashboard": "2.0.*",
                 "google/recaptcha": "~1.1",
-                "php": "^7.0"
+                "php": "^7.2"
             },
             "type": "library",
             "autoload": {
@@ -432,25 +429,25 @@
                 }
             ],
             "description": "Controle de Sessão para login de usuários",
-            "time": "2018-07-26 17:49:23"
+            "time": "2018-09-26T19:01:18+00:00"
         },
         {
             "name": "conn/table",
-            "version": "dev-master",
+            "version": "1.3.01",
             "source": {
                 "type": "git",
                 "url": "https://github.com/edineibauer/table.git",
-                "reference": "ab1bf53afba0ef1aadd6460d4c3c61790a057205"
+                "reference": "fb5bf8a4db5010f222c39b65ac1aaea4a8bb9808"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/edineibauer/table/zipball/ab1bf53afba0ef1aadd6460d4c3c61790a057205",
-                "reference": "ab1bf53afba0ef1aadd6460d4c3c61790a057205",
+                "url": "https://api.github.com/repos/edineibauer/table/zipball/fb5bf8a4db5010f222c39b65ac1aaea4a8bb9808",
+                "reference": "fb5bf8a4db5010f222c39b65ac1aaea4a8bb9808",
                 "shasum": ""
             },
             "require": {
-                "conn/form-crud": "dev-master",
-                "php": "^7.0"
+                "conn/form-crud": "1.8.*",
+                "php": "^7.2"
             },
             "type": "library",
             "autoload": {
@@ -469,32 +466,34 @@
                 }
             ],
             "description": "Tabela de Listagem de uma entidade para controle de seus dados",
-            "time": "2018-07-25 21:23:33"
+            "time": "2018-09-26T18:25:03+00:00"
         },
         {
             "name": "google/recaptcha",
-            "version": "1.1.3",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/google/recaptcha.git",
-                "reference": "5a56d15ca10a7b75158178752b2ad8f755eb4f78"
+                "reference": "e7add3be59211482ecdb942288f52da64a35f61a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/google/recaptcha/zipball/5a56d15ca10a7b75158178752b2ad8f755eb4f78",
-                "reference": "5a56d15ca10a7b75158178752b2ad8f755eb4f78",
+                "url": "https://api.github.com/repos/google/recaptcha/zipball/e7add3be59211482ecdb942288f52da64a35f61a",
+                "reference": "e7add3be59211482ecdb942288f52da64a35f61a",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.5"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.8"
+                "friendsofphp/php-cs-fixer": "^2.2.20|^2.12",
+                "php-coveralls/php-coveralls": "^2.1",
+                "phpunit/phpunit": "^4.8.36|^5.7.27|^6.59|^7"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1.x-dev"
+                    "dev-master": "1.2.x-dev"
                 }
             },
             "autoload": {
@@ -506,15 +505,15 @@
             "license": [
                 "BSD-3-Clause"
             ],
-            "description": "Client library for reCAPTCHA, a free service that protect websites from spam and abuse.",
-            "homepage": "http://www.google.com/recaptcha/",
+            "description": "Client library for reCAPTCHA, a free service that protects websites from spam and abuse.",
+            "homepage": "https://www.google.com/recaptcha/",
             "keywords": [
                 "Abuse",
                 "captcha",
                 "recaptcha",
                 "spam"
             ],
-            "time": "2017-03-09T18:44:34+00:00"
+            "time": "2018-08-05T09:31:53+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -986,21 +985,21 @@
         },
         {
             "name": "php-http/message",
-            "version": "1.6.0",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-http/message.git",
-                "reference": "2edd63bae5f52f79363c5f18904b05ce3a4b7253"
+                "reference": "741f2266a202d59c4ed75436671e1b8e6f475ea3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-http/message/zipball/2edd63bae5f52f79363c5f18904b05ce3a4b7253",
-                "reference": "2edd63bae5f52f79363c5f18904b05ce3a4b7253",
+                "url": "https://api.github.com/repos/php-http/message/zipball/741f2266a202d59c4ed75436671e1b8e6f475ea3",
+                "reference": "741f2266a202d59c4ed75436671e1b8e6f475ea3",
                 "shasum": ""
             },
             "require": {
-                "clue/stream-filter": "^1.3",
-                "php": ">=5.4",
+                "clue/stream-filter": "^1.4",
+                "php": "^5.4 || ^7.0",
                 "php-http/message-factory": "^1.0.2",
                 "psr/http-message": "^1.0"
             },
@@ -1054,7 +1053,7 @@
                 "message",
                 "psr-7"
             ],
-            "time": "2017-07-05T06:40:53+00:00"
+            "time": "2018-08-15T06:37:30+00:00"
         },
         {
             "name": "php-http/message-factory",
@@ -1208,16 +1207,16 @@
         },
         {
             "name": "smarty/smarty",
-            "version": "v3.1.32",
+            "version": "v3.1.33",
             "source": {
                 "type": "git",
                 "url": "https://github.com/smarty-php/smarty.git",
-                "reference": "ac9d4b587e5bf53381e21881820a9830765cb459"
+                "reference": "dd55b23121e55a3b4f1af90a707a6c4e5969530f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/smarty-php/smarty/zipball/ac9d4b587e5bf53381e21881820a9830765cb459",
-                "reference": "ac9d4b587e5bf53381e21881820a9830765cb459",
+                "url": "https://api.github.com/repos/smarty-php/smarty/zipball/dd55b23121e55a3b4f1af90a707a6c4e5969530f",
+                "reference": "dd55b23121e55a3b4f1af90a707a6c4e5969530f",
                 "shasum": ""
             },
             "require": {
@@ -1257,7 +1256,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2018-04-24T14:53:33+00:00"
+            "time": "2018-09-12T20:54:16+00:00"
         },
         {
             "name": "smottt/wideimage",
@@ -1345,12 +1344,12 @@
     ],
     "packages-dev": [],
     "aliases": [],
-    "minimum-stability": "dev",
-    "stability-flags": {
-        "conn/dashboard": 20
-    },
-    "prefer-stable": true,
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": "^7.2"
+    },
     "platform-dev": []
 }

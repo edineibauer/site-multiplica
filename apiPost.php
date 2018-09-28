@@ -1,4 +1,6 @@
 <?php
+header('Access-Control-Allow-Origin: *');
+
 ob_start();
 require_once './_config/config.php';
 require_once './vendor/autoload.php';

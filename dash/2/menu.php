@@ -1,5 +1,3 @@
-<?php
-?>
     <div class="col padding-medium no-select">
         <div class="col menu-li align-center hover-text-theme border padding-medium color-grey-light opacity radius pointer hover-opacity-off"
              style="margin-bottom: 5px"
@@ -17,12 +15,6 @@
             <i class="font-xxxlarge material-icons">store</i>
             <span class="font-large col">Credenciados</span>
         </div>
-        <div class="col align-center border hover-text-theme padding-medium color-grey-light opacity radius pointer hover-opacity-off menu-li"
-             style="margin-bottom: 5px"
-             data-action="table" data-entity="planos">
-            <i class="font-xxxlarge material-icons">list_alt</i>
-            <span class="font-large col">Planos</span>
-        </div>
 
         <div class="col align-center border hover-text-theme padding-medium color-grey-light opacity radius pointer hover-opacity-off menu-li"
              style="margin-bottom: 5px" data-action="page" data-atributo="fatura">
@@ -31,8 +23,8 @@
         </div>
         <div class="col align-center border hover-text-theme padding-medium color-grey-light opacity radius pointer hover-opacity-off menu-li"
              style="margin-bottom: 5px"
-             data-action="table" data-entity="clientes">
-            <span class="font-large col">Usuários</span>
+             data-action="table" data-entity="tipos_de_planos">
+            <span class="font-large col">Planos</span>
         </div>
     </div>
 
@@ -50,4 +42,3 @@
             }, true);
         }
     </script>
-<?php

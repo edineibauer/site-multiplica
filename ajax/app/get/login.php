@@ -27,7 +27,7 @@ if (empty($data['error'])) {
     $sql = new \ConnCrud\SqlCommand();
 
     if (is_numeric($user) && strlen($user) === 11 && \Helpers\Check::cpf($user)) {
-        $sql->exeCommand("SELECT u.id, u.status, u.token FROM " . PRE . "usuarios as u JOIN " . PRE . "clientes as c ON u.id = c.acesso WHERE (c.cpf = '{$user}' OR u.{$telName} = '{$user}') AND u.{$password} = '{$pass}'");
+        $sql->exeCommand("SELECT u.id, u.status, u.token FROM " . PRE . "usuarios as u JOIN " . PRE . "clientes as c ON u.id = c.login WHERE (c.cpf = '{$user}' OR u.{$telName} = '{$user}') AND u.{$password} = '{$pass}'");
         if ($sql->getErro()) {
             $data['error'] = trim(strip_tags($sql->getErro()));
         } elseif ($sql->getResult()) {
@@ -44,7 +44,7 @@ if (empty($data['error'])) {
         }
 
     } else {
-        $sql->exeCommand("SELECT u.id, u.status, u.token FROM " . PRE . "usuarios as u JOIN " . PRE . "clientes as c ON u.id = c.acesso WHERE (u.{$emailName} = '{$user}' OR u.{$telName} = '{$user}') AND u.{$password} = '{$pass}'");
+        $sql->exeCommand("SELECT u.id, u.status, u.token FROM " . PRE . "usuarios as u JOIN " . PRE . "clientes as c ON u.id = c.login WHERE (u.{$emailName} = '{$user}' OR u.{$telName} = '{$user}') AND u.{$password} = '{$pass}'");
         if ($sql->getErro()) {
             $data['error'] = trim(strip_tags($sql->getErro()));
         } elseif ($sql->getResult()) {
