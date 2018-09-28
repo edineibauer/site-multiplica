@@ -1,0 +1,7 @@
+[
+  {
+    "entity": "cliente_upload",
+    "action": "create",
+    "function": "cliente/import"
+  }
+]
