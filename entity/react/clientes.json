@@ -1,7 +1,0 @@
-[
-  {
-    "entity": "clientes",
-    "action": "create",
-    "function": "cliente/email/bem-vindo"
-  }
-]

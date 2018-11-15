@@ -1,5 +1,0 @@
-{
-  "entity": "cliente_fatura_fisica",
-  "action": "create",
-  "function": "cliente/email/fatura_fisica"
-}

@@ -1,5 +1,0 @@
-{
-  "entity": "cliente_p_fisica",
-  "action": "update",
-  "function": "clienteFisicaUpdateStatusFuncionario"
-}
