@@ -1,3 +1,13 @@
+<style>
+    header.masthead {
+        background: url(<?= HOME . VENDOR?>site-multiplica/public/assets/img/bg-pattern.png), #7b4397;
+        background: url(<?= HOME . VENDOR?>site-multiplica/public/assets/img/bg-pattern.png), -webkit-gradient(linear, right top, left top, from(#A9CF48), to(#7b4397));
+        background: url(<?= HOME . VENDOR?>site-multiplica/public/assets/img/bg-pattern.png), linear-gradient(to left, #A9CF48, #7b4397)
+    }
+    section.cta {
+        background-image: url('<?= HOME . VENDOR?>site-multiplica/public/assets/img/bg-cta.jpg');
+    }
+</style>
 <div id="page-top">
     <header class="masthead">
         <div class="container h-100">
@@ -12,7 +22,7 @@
                 </div>
                 <div class="col-lg-5 my-auto">
                     <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
-                    <img src="<?= HOME ?>public/assets/img/smartphone.png" id="smart-img" class="img-fluid" alt="App da Multiplica">
+                    <img src="<?= HOME . VENDOR?>site-multiplica/public/assets/img/smartphone.png" id="smart-img" class="img-fluid" alt="App da Multiplica">
                 </div>
             </div>
         </div>
@@ -26,10 +36,10 @@
                     <p>O app que trás benefícios a sua vida!</p>
                     <div class="badges">
                         <a class="badge-link" target="_blank" href="http://bit.ly/2qhm6la">
-                            <img src="<?= HOME ?>public/assets/img/google-play-badge.svg" alt="">
+                            <img src="<?= HOME . VENDOR?>site-multiplica/public/assets/img/google-play-badge.svg" alt="">
                         </a>
                         <a class="badge-link" target="_blank" href="http://bit.ly/2qhm6la">
-                            <img src="<?= HOME ?>public/assets/img/app-store-badge.svg" alt="">
+                            <img src="<?= HOME . VENDOR?>site-multiplica/public/assets/img/app-store-badge.svg" alt="">
                         </a>
                     </div>
                 </div>
@@ -63,5 +73,4 @@
             </ul>
         </div>
     </footer>
-
 </div>
