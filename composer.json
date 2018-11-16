@@ -12,6 +12,7 @@
   "require": {
     "php": "^7.2",
     "conn/dashboard": "2.*",
-    "conn/email-control": "*"
+    "conn/email-control": "*",
+    "phpoffice/phpspreadsheet": "^1.5"
   }
 }
