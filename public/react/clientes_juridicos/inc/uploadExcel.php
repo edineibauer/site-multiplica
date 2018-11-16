@@ -3,10 +3,16 @@
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use Helpers\Check;
 
-$isNewUploadExcel = empty($dadosOld['upload_excel']) || (json_decode($dadosOld['upload_excel'], true)[0]['url'] !== json_decode($dados['upload_excel'], true)[0]['url']);
-$isCreateUploadExcel = !isset($dadosOld) || empty($dadosOld['upload_excel']);
+$uploadOld = "";
+if (isset($dadosOld) && !empty($dadosOld['upload_excel']))
+    $uploadOld = json_decode($dadosOld['upload_excel'], true);
 
-if (!empty($dados['upload_excel']) && ($isCreateUploadExcel || $isNewUploadExcel)) {
+$upload = "";
+if (!empty($dados['upload_excel']))
+    $upload = json_decode($dados['upload_excel'], true);
+
+
+if (!empty($upload) && (empty($uploadOld) || $uploadOld[0]['url'] !== $upload[0]['url'])) {
 
     //Prepara variáveis
     $file = PATH_HOME . json_decode($dados['upload_excel'], true)[0]['url'];
@@ -44,7 +50,6 @@ if (!empty($dados['upload_excel']) && ($isCreateUploadExcel || $isNewUploadExcel
                 elseif ($ref[$column] === "nome")
                     $valor = ucwords($valor ?? "");
 
-
                 $dadosT[$conv[$ref[$column]]] = $valor ?? "";
             }
         }
@@ -76,7 +81,7 @@ if (!empty($dados['upload_excel']) && ($isCreateUploadExcel || $isNewUploadExcel
             unset($cliente['cpf']);
 
         //Se já existe algum cliente com este CPF ou EMAIL, então edita ele
-        if(!empty($cliente['cpf']) || !empty($cliente['email'])) {
+        if (!empty($cliente['cpf']) || !empty($cliente['email'])) {
             if (!empty($cliente['cpf']) && !empty($cliente['email']))
                 $read->exeRead("clientes", "WHERE cpf = :cpf || email = :email", "cpf={$cliente['cpf']}&email={$cliente['email']}");
             elseif (!empty($cliente['cpf']))
