@@ -29,7 +29,7 @@ if ($read->getResult()) {
             $diaHoje = date("Y-m-d");
             $read->exeRead(PRE . "cliente_fatura_juridica", "WHERE cliente_pj =:cpj && data = :data && valor = :valor", "cpj={$cc['id']}&data={$diaHoje}&valor={$valor}");
             if (!$read->getResult()) {
-                $d = new \EntityForm\Dicionario("cliente_fatura_juridica");
+                $d = new \Entity\Dicionario("cliente_fatura_juridica");
                 $d->setData(["cliente_pj" => $cc['id'], "data" => $diaHoje, "valor" => $valor, "descricao" => $desc]);
                 $d->save();
             }
@@ -59,7 +59,7 @@ if ($read->getResult()) {
             $diaHoje = date("Y-m-d");
             $read->exeRead(PRE . "cliente_fatura_fisica", "WHERE cliente_pf =:cpf && data = :data && valor = :valor", "cpf={$cc['id']}&data={$diaHoje}&valor={$valor}");
             if (!$read->getResult()) {
-                $d = new \EntityForm\Dicionario("cliente_fatura_fisica");
+                $d = new \Entity\Dicionario("cliente_fatura_fisica");
                 $d->setData(["cliente_pf" => $cc['id'], "data" => $diaHoje, "valor" => $valor, "descricao" => $desc]);
                 $d->save();
             }

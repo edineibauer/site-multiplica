@@ -8,7 +8,7 @@ $senha = trim(strip_tags(filter_input(INPUT_POST, 'password', FILTER_DEFAULT)));
 if (empty($senha) || strlen($senha) < 3) {
     $data['error'] = "Nova Senha deve possuir 3 ou mais caracteres";
 } else {
-    $d = new \EntityForm\Dicionario("usuarios");
+    $d = new \Entity\Dicionario("usuarios");
     $passName = $d->search($d->getInfo()['password'])->getColumn();
 
     $read = new \ConnCrud\Read();

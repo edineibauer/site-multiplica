@@ -13,7 +13,7 @@ if (empty($senha) || strlen($senha) < 3) {
     if ($read->getResult() && $read->getResult()[0]['status'] === '1') {
         $user = $read->getResult()[0];
 
-        $d = new \EntityForm\Dicionario("usuarios");
+        $d = new \Entity\Dicionario("usuarios");
         $passColumn = $d->search($d->getInfo()['password'])->getColumn();
 
         $dados = [

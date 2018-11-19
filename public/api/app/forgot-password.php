@@ -2,7 +2,7 @@
 $data = ['response' => 2, "error" => "", "data" => ""];
 
 $token = trim(strip_tags(filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL)));
-$d = new \EntityForm\Dicionario("usuarios");
+$d = new \Entity\Dicionario("usuarios");
 $emailName = $d->search($d->getInfo()['email'])->getColumn();
 $nomeName = $d->search($d->getInfo()['title'])->getColumn();
 

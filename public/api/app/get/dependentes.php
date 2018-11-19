@@ -21,7 +21,7 @@ if ($read->getResult() && $read->getResult()[0]['status'] === '1') {
             $data['error'] = trim(strip_tags($read->getErro()));
         } elseif($sql->getResult()) {
 
-            $dependente = new \EntityForm\Dicionario("dependente");
+            $dependente = new \Entity\Dicionario("dependente");
             $dependenteData = $dependente->search("grau_de_parentesco")->getAllow();
             $dep = [];
             foreach($dependenteData['values'] as $i => $v)

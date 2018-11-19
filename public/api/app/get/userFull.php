@@ -18,7 +18,7 @@ if ($read->getResult() && $read->getResult()[0]['status'] === '1') {
     $read->exeRead("clientes", "WHERE login = :ui", "ui={$user['id']}");
     if ($read->getResult()) {
         $cliente = $read->getResult()[0];
-        $dc = new \EntityForm\Dicionario("clientes");
+        $dc = new \Entity\Dicionario("clientes");
         $user['cpf'] = $cliente['cpf'];
         $user['telefone'] = $cliente['telefone'];
         $user['email'] = $user['email'] ?? $cliente['email'];
@@ -38,7 +38,7 @@ if ($read->getResult() && $read->getResult()[0]['status'] === '1') {
                 "status" => $plano['status'],
                 "observacoes" => $plano['observacoes']
             ];
-            $d = new \EntityForm\Dicionario("tipos_de_planos");
+            $d = new \Entity\Dicionario("tipos_de_planos");
 
             $read->exeRead("tipos_de_planos", "WHERE id = :tpp", "tpp={$plano['plano']}");
             if ($read->getResult()) {

@@ -12,7 +12,7 @@ if($allow) {
         $cliente = $read->getResult()[0];
 
         /* Busca Associação com Empresa */
-        $dicJuridico = new \EntityForm\Dicionario('clientes_juridicos');
+        $dicJuridico = new \Entity\Dicionario('clientes_juridicos');
         $columnName = $dicJuridico->getRelevant()->getColumn();
         $columnEmail = !empty($dicJuridico->getInfo()['email']) ? $dicJuridico->search($dicJuridico->getInfo()['email'])->getColumn() : "";
         $columnTel = !empty($dicJuridico->getInfo()['tel']) ? $dicJuridico->search($dicJuridico->getInfo()['tel'])->getColumn() : "";

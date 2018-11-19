@@ -35,7 +35,7 @@ if($hora === '00') {
                     if($vencimento > $hoje) {
                         //Plano vencido, desativa plano
 
-                        $d = new \EntityForm\Dicionario("planos");
+                        $d = new \Entity\Dicionario("planos");
                         $d->setData(["id" => $plano['id'], "status" => 0]);
                         $d->save();
 
@@ -53,7 +53,7 @@ if($hora === '00') {
                 if($vencimento > $hoje) {
                     //Plano vencido, desativa plano de Jurídico
 
-                    $d = new \EntityForm\Dicionario("clientes_juridicos");
+                    $d = new \Entity\Dicionario("clientes_juridicos");
                     $d->setData(["id" => $jud['id'], "status" => 0]);
                     $d->save();
 

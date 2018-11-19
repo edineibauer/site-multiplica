@@ -18,7 +18,7 @@ if (preg_match('/\d{3}.\d{3}.\d{3}-\d{2}/i', $user))
     $user = str_replace([".", '-'], '', $user);
 
 if (empty($data['error'])) {
-    $d = new \EntityForm\Dicionario("usuarios");
+    $d = new \Entity\Dicionario("usuarios");
     $emailName = $d->search($d->getInfo()['email'])->getColumn();
     $password = $d->search($d->getInfo()['password'])->getColumn();
 
