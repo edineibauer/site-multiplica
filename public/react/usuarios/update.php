@@ -1,4 +1,25 @@
 <?php
+
+/* Reenvia SMS caso seja alterado */
+if(!empty($dados['telefone']) && $dadosOld['telefone'] !== $dados['telefone']) {
+    try {
+        //Prepara para enviar email
+        $telDic = new \Entity\Dicionario("smsiagente");
+        $telDic->setData([
+            "celular" => $dados['telefone'],
+            "mensagem" => "Bem vindo(a) a MULTIPLICA, utilize o APP para android http://bit.ly/2qhm6la, acesse com seu Email ou CPF/CNPJ, juntamente com a senha: {$senha}",
+            "status" => "AGUARDANDO"
+        ]);
+        $telDic->save();
+
+        if ($telDic->getError())
+            $data['error'] = $telDic->getError();
+
+    } catch (Exception $exception) {
+        $data['error'] = "Erro de Exception ao Enviar Email";
+    }
+}
+
 /*
 $dicUser = new \Entity\Dicionario("usuarios");
 
