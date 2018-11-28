@@ -19,6 +19,7 @@ $(function () {
                 $(".valor-or-desconto").find("input").val(valorMultiplica.toFixed(2)).trigger("input");
         }
     }
+
     $(".desconto-or-valor").off("keyup change", "input").on("keyup change", "input", function () {
         setValorMultiplica();
     });

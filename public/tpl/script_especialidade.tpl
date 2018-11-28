@@ -1,0 +1,1 @@
+<script src="{$home}{$vendor}site-multiplica/public/assets/desconto/especialista_desconto.js"></script>
