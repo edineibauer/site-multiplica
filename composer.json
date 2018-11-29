@@ -13,7 +13,6 @@
     "php": "^7.2",
     "conn/dashboard": "2.*",
     "conn/email-control": "*",
-    "phpoffice/phpspreadsheet": "^1.5",
-    "conn/ui-dev": "^1.0"
+    "phpoffice/phpspreadsheet": "^1.5"
   }
 }
