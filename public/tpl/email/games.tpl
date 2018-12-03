@@ -205,7 +205,7 @@
                                                                 class="m_5372895143664279880mcnButtonContent"
                                                                 style="font-family:&quot;Open Sans&quot;,&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif;font-size:14px;padding:15px">
                                                                 {if isset($url)}
-                                                                    <a title="COMPRAR AGORA!"
+                                                                    <a
                                                                        href="{$url}"
                                                                        style="font-weight:bold;letter-spacing:normal;line-height:100%;text-align:center;text-decoration:none;color:#ffffff;display:block"
                                                                        target="_blank"

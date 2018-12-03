@@ -34,19 +34,15 @@ if ($read->getResult() && $read->getResult()[0]['status'] === '1') {
         ];
 
         //Prepara para enviar email
-        $envioEmail = new \EmailControl\EmailSparkPost();
-        $envioEmail->setDestinatarioNome($nome);
-        $envioEmail->setAssunto("Recuperação de Senha");
-        $envioEmail->setLibrary("site-multiplica");
-        $envioEmail->setTemplate("email/games",
-            [
-                "btn" => "<b style='font-size:25px;color:white'>{$code}</b>",
-                "title" => "Recuperação de Senha",
-                "logo" => HOME . LOGO,
-                "content" => "Para redefinir sua senha, utilize o token de segurança abaixo no aplicativo da multiplica."
-                    . "<p style=\"margin:10px 0;padding:0;color:#ffffff;font-family:'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;font-size:16px;line-height:150%;text-align:center\"><b>SEU TOKEN DE RECUPERAÇÃO</b></p>"
-            ]);
-        $envioEmail->enviar($email);
+
+        //Prepara para enviar email
+        $envio = new \EmailControl\EmailEnvio();
+        $envio->setAssunto("Recuperação de Senha");
+        $envio->setDestinatarioEmail($email);
+        $envio->setBtnLink(HOME . "inserir-nova-senha/{$code}");
+        $envio->setBtnText("<b style='font-size:25px;color:white'>Redefinir Senha</b>");
+        $envio->setMensagem("Para redefinir sua senha, clique no link abaixo.");
+        $envio->enviar();
 
     } else {
         $data['error'] = "não foi possível recuperar o email";
