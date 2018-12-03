@@ -4,7 +4,7 @@
  * Cria um usuário para que o credenciado consiga logar
  */
 
-$dicCliente = new \Entity\Dicionario("credenciado_fisico");
+$dicCliente = new \Entity\Dicionario("credenciado_juridico");
 $dicUser = new \Entity\Dicionario("usuarios");
 $nome = $dados[$dicCliente->search($dicCliente->getInfo()['title'])->getColumn()];
 
@@ -12,7 +12,7 @@ $nome = $dados[$dicCliente->search($dicCliente->getInfo()['title'])->getColumn()
 $tel = $dicUser->search($dicUser->getInfo()['tel'])->getColumn();
 $email = $dicUser->search($dicUser->getInfo()['email'])->getColumn();
 
-$senhaUser = substr($dados['cpf'], 0, 4);
+$senhaUser = substr($dados['cnpj'], 0, 4);
 
 $user = [
     "nome" => $nome,
