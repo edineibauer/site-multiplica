@@ -1,9 +1,5 @@
 <?php
 
-/**
- * Cria um usuário para que o cliente consiga logar caso este não exista na atualização de um cliente
- */
-
 $dicCliente = new \Entity\Dicionario("clientes");
 $dicUser = new \Entity\Dicionario("usuarios");
 $nome = $dados[$dicCliente->search($dicCliente->getInfo()['title'])->getColumn()];
@@ -16,6 +12,8 @@ $read = new \ConnCrud\Read();
 $read->exeRead("clientes", "WHERE id = :ll", "ll={$dados['id']}");
 $cliente = $read->getResult()[0];
 
+var_dump($nome);
+var_dump($cliente);die;
 if (empty($cliente['login']) && !empty($nome) && (!empty($cliente['email']) || !empty($cliente['telefone']))) {
 
     //Atualizou Cliente, não Existia Usuário, Requisitos Atendidos, Cria Usuário, Envia Email
@@ -35,6 +33,7 @@ if (empty($cliente['login']) && !empty($nome) && (!empty($cliente['email']) || !
 
     $dicUser->setData($user);
     $dicUser->save();
+
 
     if ($dicUser->getError()) {
         $data['error'] = $dicUser->getError();

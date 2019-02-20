@@ -30,6 +30,7 @@ if(!empty($nome) && (!empty($dados[$email]) || !empty($dados[$tel]))) {
 
     $dicUser->setData($user);
     $dicUser->save();
+    var_dump($dicUser->getError());die;
 
     if ($dicUser->getError()) {
         $data['error'] = $dicUser->getError();

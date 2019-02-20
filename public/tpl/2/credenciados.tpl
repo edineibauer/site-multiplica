@@ -1,7 +1,7 @@
 <div class="col padding-64">
     <div class="container-1200">
         <div class="col padding-bottom">
-            <h2 class="align-left padding-0 padding-left">Credenciados</h2>
+            <h2 class="align-left padding-0 padding-left">Parceiros</h2>
         </div>
         <div class="col s12 m4 padding-medium">
             <div class="z-depth-2 color-white hover-shadow pointer no-select col menu-li" data-action="table" data-entity="credenciado_fisico">
