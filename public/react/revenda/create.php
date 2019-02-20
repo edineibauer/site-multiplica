@@ -22,9 +22,8 @@ $revenda = [
     "master" => $_SESSION['userlogin']['setor'] <= ADM && $dados['master'] ? 1 : 0
 ];
 
+$up = new \ConnCrud\Update();
 if(!empty($nome) && !empty($senha)) {
-    $up = new \ConnCrud\Update();
-    $create = new \ConnCrud\Create();
 
     $user = [
         "nome" => $nome,

@@ -12,8 +12,6 @@ $read = new \ConnCrud\Read();
 $read->exeRead("clientes", "WHERE id = :ll", "ll={$dados['id']}");
 $cliente = $read->getResult()[0];
 
-var_dump($nome);
-var_dump($cliente);die;
 if (empty($cliente['login']) && !empty($nome) && (!empty($cliente['email']) || !empty($cliente['telefone']))) {
 
     //Atualizou Cliente, não Existia Usuário, Requisitos Atendidos, Cria Usuário, Envia Email

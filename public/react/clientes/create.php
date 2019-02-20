@@ -30,9 +30,8 @@ if(!empty($nome) && (!empty($dados[$email]) || !empty($dados[$tel]))) {
 
     $dicUser->setData($user);
     $dicUser->save();
-    var_dump($dicUser->getError());die;
 
-    if ($dicUser->getError()) {
+    if (!$dicUser->getError()) {
         $data['error'] = $dicUser->getError();
     } else {
         $up = new \ConnCrud\Update();
@@ -44,5 +43,4 @@ if(!empty($nome) && (!empty($dados[$email]) || !empty($dados[$tel]))) {
         $create = new \ConnCrud\Create();
         $create->exeCreate("clientes_juridicos_clientes", ["clientes_juridicos_id" => $_SESSION['convenio']['id'], "clientes_id" => $dados['id']]);
     }
-
 }
