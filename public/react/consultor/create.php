@@ -56,7 +56,7 @@ if ($dados['pessoa'] == 1) {
             if ($read->getResult()) {
                 foreach ($read->getResult() as $item) {
                     $mensagem = new \Entity\Dicionario("dashboard_note");
-                    $mensagem->setData(["titulo" => "Consultor tentou Recadastrar", "descricao" => $tipo . ", nome de usuário '" . $_SESSION['userlogin']['nome'] . "' tentou cadastrar '{$dados['nome_razao_social']}' com CNPJ <b>{$dados['cnpj']}</b> cujo qual já esta cadastrado e <b>{$ativo}</b> no sistema.", "status" => 2, "autor" => $item['id']]);
+                    $mensagem->setData(["titulo" => "Consultor <b>{$dados['nome_razao_social']}</b> já Cadastrado.", "descricao" => $tipo . ", nome de usuário '" . $_SESSION['userlogin']['nome'] . "' tentou cadastrar '{$dados['nome_razao_social']}' com CNPJ <b>{$dados['cnpj']}</b> cujo qual já esta cadastrado e <b>{$ativo}</b> no sistema.", "status" => 2, "autor" => $item['id']]);
                     $mensagem->save();
                 }
             }
@@ -77,7 +77,7 @@ if ($dados['pessoa'] == 1) {
             if ($read->getResult()) {
                 foreach ($read->getResult() as $item) {
                     $mensagem = new \Entity\Dicionario("dashboard_note");
-                    $mensagem->setData(["titulo" => "Consultor tentou Recadastrar", "descricao" => $tipo . ", nome de usuário '" . $_SESSION['userlogin']['nome'] . "' tentou cadastrar '{$dados['nome_razao_social']}' com CNPJ <b>{$dados['cnpj']}</b> cujo qual já esta cadastrado e <b>{$ativo}</b> no sistema.", "status" => 2, "autor" => $item['id']]);
+                    $mensagem->setData(["titulo" => "Consultor <b>{$dados['nome_razao_social']}</b> já Cadastrado.", "descricao" => $tipo . ", nome de usuário '" . $_SESSION['userlogin']['nome'] . "' tentou cadastrar '{$dados['nome_razao_social']}' com CPF <b>{$dados['cpf']}</b> cujo qual já esta cadastrado e <b>{$ativo}</b> no sistema.", "status" => 2, "autor" => $item['id']]);
                     $mensagem->save();
                 }
             }
