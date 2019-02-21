@@ -12,11 +12,20 @@
     {foreach $dados as $dado}
         <div class="col s12 m6 l3 padding-small partner-card"
              rel="[100000{foreach $dado.especialidades as $i => $esp}{if !empty($esp.categoria)},{$esp.categoria}{/if}{/foreach}]">
-            <div class="card col padding-small">
-                <span class="col font-small padding-small padding-bottom font-bold"><span
-                            class="left">{$dado.bairro}</span> <span class="right">{$dado.cidade}/{$dado.estado}</span></span>
-                <h4 class="padding-small upper"
-                    style="line-height: 25px;height: 70px; overflow: hidden">{($dado.tipo === 1)? $dado.nome : $dado.razao_social}</h4>
+            <div class="card col">
+                <div class="col margin-bottom">
+                <span class="col font-small theme padding-small padding-bottom font-bold">
+                    <span class="left">{$dado.bairro}</span>
+                    <span class="right">{$dado.cidade}/{$dado.estado}</span>
+                </span>
+                    <h4 class="padding-medium theme-l1 upper" style="line-height: 25px;height: 70px; overflow: hidden">
+                        {($dado.tipo === 1)? $dado.nome : $dado.razao_social}
+                    </h4>
+                    <span class="col padding-medium padding-4 color-gray-light" style="height: 55px;overflow: hidden">
+                        <span class="col">tel:&nbsp;&nbsp;{$dado.telefone}</span>
+                        <span class="col">{$dado.email}</span>
+                    </span>
+                </div>
                 <ul class="col" style="height: 200px; overflow-x:hidden; overflow-y: auto">
                     {foreach $dado.especialidades as $i => $esp}
                         <li class="col" style="background: {($i%2 === 0) ? "white": "#eee"}">
@@ -37,7 +46,7 @@
             let $this = $(this);
             let rel = $this.attr("rel").replace("[100000,", "[");
             rel = JSON.parse(rel);
-            if(rel.length) {
+            if (rel.length) {
                 if (rel.indexOf(id) > -1)
                     $this.removeClass("hide");
             }

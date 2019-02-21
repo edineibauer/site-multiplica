@@ -18,31 +18,88 @@ $tel = $dicUser->search($dicUser->getInfo()['tel'])->getColumn();
 $email = $dicUser->search($dicUser->getInfo()['email'])->getColumn();
 $pass = $dicUser->search($dicUser->getInfo()['password'])->getColumn();
 
-$up = new \ConnCrud\Update();
-if(!empty($nome) && !empty($senha)) {
+//verifica se este consultor já existe
+$read = new \ConnCrud\Read();
+$del = new \ConnCrud\Delete();
+$erro = null;
 
-    $user = [
-        "nome" => $nome,
-        "nome_usuario" => \Helpers\Check::name($nome),
-        $email => $dados[$email] ?? "",
-        $tel => $dados[$tel] ?? "",
-        $pass => $senha,
-        "data" => date("Y-m-d H:i:s"),
-        "status" => $consultor[$columnStatus],
-        "setor" => 8,
-        "nivel" => 1,
-        "token_recovery" => $senha
-    ];
+if($dados['pessoa'] == 1) {
+    //consultor jurídio
 
-    $dicUser->setData($user);
-    $dicUser->save();
-
-    if ($dicUser->getError()) {
-        $data['error'] = $dicUser->getError();
+    if(empty($dados['cnpj'])) {
+        $erro = ["cnpj" => "Informe o CNPJ"];
     } else {
-        $consultor["login"] = $dicUser->search(0)->getValue();
-        $up->exeUpdate("usuarios", [$pass => $senha],"WHERE id = :id", "id={$consultor["login"]}");
+        $read->exeRead("consultor", "WHERE cnpj = :cnpj && id != :id", "cnpj={$dados['cnpj']}&id={$dados['id']}");
+        if($read->getResult()) {
+            $erro = ["cnpj" => "Consultor já Cadastrado!"];
+            $consultorExiste = $read->getResult()[0];
+
+            $admSetor = ADM;
+            $ativo = $consultorExiste['ativo'] == 1 ? "ativo" : "inativo";
+            $read->exeRead("usuarios", "WHERE setor <= :setor && setor > 1", "setor={$admSetor}");
+            if($read->getResult()) {
+                foreach ($read->getResult() as $item) {
+                    $mensagem = new \Entity\Dicionario("dashboard_note");
+                    $mensagem->setData(["titulo" => "Consultor tentou Recadastrar", "descricao" => $_SESSION['userlogin']['nome'] . " tentou cadastrar '{$dados['nome_razao_social']}' com CNPJ <b>{$dados['cnpj']}</b> cujo qual já esta cadastrado e <b>{$ativo}</b>.", "status" => 2, "autor" => $item['id']]);
+                    $mensagem->save();
+                }
+            }
+        }
+    }
+} else {
+    //consultor físico
+    if(empty($dados['cpf'])) {
+        $erro = ["cpf" => "Informe o CPF!"];
+    } else {
+        $read->exeRead("consultor", "WHERE cpf = :cpf && id != :id", "cpf={$dados['cpf']}&id={$dados['id']}");
+        if($read->getResult()) {
+            $erro = ["cpf" => "Consultor já Cadastrado!"];
+            $consultorExiste = $read->getResult()[0];
+
+            $admSetor = ADM;
+            $ativo = $consultorExiste['ativo'] == 1 ? "ativo" : "inativo";
+            $read->exeRead("usuarios", "WHERE setor <= :setor && setor > 1", "setor={$admSetor}");
+            if($read->getResult()) {
+                foreach ($read->getResult() as $item) {
+                    $mensagem = new \Entity\Dicionario("dashboard_note");
+                    $mensagem->setData(["titulo" => "Consultor tentou Recadastrar", "descricao" => $_SESSION['userlogin']['nome'] . " tentou cadastrar '{$dados['nome_razao_social']}' com CNPJ <b>{$dados['cpf']}</b> cujo qual já esta cadastrado e <b>{$ativo}</b>.", "status" => 2, "autor" => $item['id']]);
+                    $mensagem->save();
+                }
+            }
+        }
     }
 }
 
-$up->exeUpdate("consultor", $consultor, "WHERE id = :id", "id={$dados['id']}");
+if(empty($erro)) {
+    $up = new \ConnCrud\Update();
+    if (!empty($nome) && !empty($senha)) {
+
+        $user = [
+            "nome" => $nome,
+            "nome_usuario" => \Helpers\Check::name($nome),
+            $email => $dados[$email] ?? "",
+            $tel => $dados[$tel] ?? "",
+            $pass => $senha,
+            "data" => date("Y-m-d H:i:s"),
+            "status" => $consultor[$columnStatus],
+            "setor" => 8,
+            "nivel" => 1,
+            "token_recovery" => $senha
+        ];
+
+        $dicUser->setData($user);
+        $dicUser->save();
+
+        if ($dicUser->getError()) {
+            $data['error'] = $dicUser->getError();
+        } else {
+            $consultor["login"] = $dicUser->search(0)->getValue();
+            $up->exeUpdate("usuarios", [$pass => $senha], "WHERE id = :id", "id={$consultor["login"]}");
+        }
+    }
+
+    $up->exeUpdate("consultor", $consultor, "WHERE id = :id", "id={$dados['id']}");
+} else {
+    $del->exeDelete("consultor", "WHERE id = :id", "id={$dados['id']}");
+    $data['error'] = $erro;
+}
