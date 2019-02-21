@@ -2,8 +2,9 @@
 
 $dicCliente = new \Entity\Dicionario("consultor");
 $dicUser = new \Entity\Dicionario("usuarios");
-
 $read = new \ConnCrud\Read();
+$del = new \ConnCrud\Delete();
+
 $read->exeRead("consultor", "WHERE id = :id", "id={$dados['id']}");
 $dados = $read->getResult()[0] ?? [];
 
@@ -19,11 +20,10 @@ $email = $dicUser->search($dicUser->getInfo()['email'])->getColumn();
 $pass = $dicUser->search($dicUser->getInfo()['password'])->getColumn();
 
 //verifica se este consultor já existe
-$read = new \ConnCrud\Read();
-$del = new \ConnCrud\Delete();
 $erro = null;
-
 $admSetor = ADM;
+
+//CNPJ
 $cnpj = "";
 if ($_SESSION['userlogin']['setor'] === "7") {
     $read = new \ConnCrud\Read();
