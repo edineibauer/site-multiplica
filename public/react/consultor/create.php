@@ -23,24 +23,40 @@ $read = new \ConnCrud\Read();
 $del = new \ConnCrud\Delete();
 $erro = null;
 
-if($dados['pessoa'] == 1) {
+$admSetor = ADM;
+$cnpj = "";
+if ($_SESSION['userlogin']['setor'] === "7") {
+    $read = new \ConnCrud\Read();
+    $read->exeRead("revenda", "WHERE login = :id", "id={$_SESSION['userlogin']['id']}");
+    if($read->getResult())
+        $cnpj = $read->getResult()[0]['cnpj'];
+
+} elseif ($_SESSION['userlogin']['setor'] === "8") {
+    $read = new \ConnCrud\Read();
+    $read->exeRead("consultor", "WHERE login = :id", "id={$_SESSION['userlogin']['id']}");
+    if($read->getResult())
+        $cnpj = $read->getResult()[0]['pessoa'] == "1" ? $read->getResult()[0]['cnpj'] : $read->getResult()[0]['cpf'];
+}
+
+$tipo = ($_SESSION['userlogin']['setor'] === 8 ? "o Consultor(a)" : "a Revenda") . " com CNPJ <b>{$cnpj}</b>";
+
+if ($dados['pessoa'] == 1) {
     //consultor jurídio
 
-    if(empty($dados['cnpj'])) {
+    if (empty($dados['cnpj'])) {
         $erro = ["cnpj" => "Informe o CNPJ"];
     } else {
         $read->exeRead("consultor", "WHERE cnpj = :cnpj && id != :id", "cnpj={$dados['cnpj']}&id={$dados['id']}");
-        if($read->getResult()) {
+        if ($read->getResult()) {
             $erro = ["cnpj" => "Consultor já Cadastrado!"];
             $consultorExiste = $read->getResult()[0];
-
-            $admSetor = ADM;
             $ativo = $consultorExiste['ativo'] == 1 ? "ativo" : "inativo";
+
             $read->exeRead("usuarios", "WHERE setor <= :setor && setor > 1", "setor={$admSetor}");
-            if($read->getResult()) {
+            if ($read->getResult()) {
                 foreach ($read->getResult() as $item) {
                     $mensagem = new \Entity\Dicionario("dashboard_note");
-                    $mensagem->setData(["titulo" => "Consultor tentou Recadastrar", "descricao" => $_SESSION['userlogin']['nome'] . " tentou cadastrar '{$dados['nome_razao_social']}' com CNPJ <b>{$dados['cnpj']}</b> cujo qual já esta cadastrado e <b>{$ativo}</b>.", "status" => 2, "autor" => $item['id']]);
+                    $mensagem->setData(["titulo" => "Consultor tentou Recadastrar", "descricao" => $tipo . ", nome de usuário '" . $_SESSION['userlogin']['nome'] . "' tentou cadastrar '{$dados['nome_razao_social']}' com CNPJ <b>{$dados['cnpj']}</b> cujo qual já esta cadastrado e <b>{$ativo}</b> no sistema.", "status" => 2, "autor" => $item['id']]);
                     $mensagem->save();
                 }
             }
@@ -48,21 +64,20 @@ if($dados['pessoa'] == 1) {
     }
 } else {
     //consultor físico
-    if(empty($dados['cpf'])) {
+    if (empty($dados['cpf'])) {
         $erro = ["cpf" => "Informe o CPF!"];
     } else {
         $read->exeRead("consultor", "WHERE cpf = :cpf && id != :id", "cpf={$dados['cpf']}&id={$dados['id']}");
-        if($read->getResult()) {
+        if ($read->getResult()) {
             $erro = ["cpf" => "Consultor já Cadastrado!"];
             $consultorExiste = $read->getResult()[0];
-
-            $admSetor = ADM;
             $ativo = $consultorExiste['ativo'] == 1 ? "ativo" : "inativo";
+
             $read->exeRead("usuarios", "WHERE setor <= :setor && setor > 1", "setor={$admSetor}");
-            if($read->getResult()) {
+            if ($read->getResult()) {
                 foreach ($read->getResult() as $item) {
                     $mensagem = new \Entity\Dicionario("dashboard_note");
-                    $mensagem->setData(["titulo" => "Consultor tentou Recadastrar", "descricao" => $_SESSION['userlogin']['nome'] . " tentou cadastrar '{$dados['nome_razao_social']}' com CNPJ <b>{$dados['cpf']}</b> cujo qual já esta cadastrado e <b>{$ativo}</b>.", "status" => 2, "autor" => $item['id']]);
+                    $mensagem->setData(["titulo" => "Consultor tentou Recadastrar", "descricao" => $tipo . ", nome de usuário '" . $_SESSION['userlogin']['nome'] . "' tentou cadastrar '{$dados['nome_razao_social']}' com CNPJ <b>{$dados['cnpj']}</b> cujo qual já esta cadastrado e <b>{$ativo}</b> no sistema.", "status" => 2, "autor" => $item['id']]);
                     $mensagem->save();
                 }
             }
@@ -70,7 +85,7 @@ if($dados['pessoa'] == 1) {
     }
 }
 
-if(empty($erro)) {
+if (empty($erro)) {
     $up = new \ConnCrud\Update();
     if (!empty($nome) && !empty($senha)) {
 

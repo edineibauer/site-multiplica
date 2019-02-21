@@ -2,8 +2,17 @@
 
 $read = new \ConnCrud\Read();
 $read->exeRead("consultor", "WHERE login = :id", "id={$_SESSION['userlogin']['id']}");
-$read->exeRead("revenda", "WHERE id = :id", "id={$read->getResult()[0]['revenda']}");
-define("REVENDA", $read->getResult()[0] ?? []);
+if($read->getResult()) {
+    define("CONSULTOR", $read->getResult()[0]);
+    $read->exeRead("revenda", "WHERE id = :id", "id={$read->getResult()[0]['revenda']}");
+    if($read->getResult()) {
+        define("REVENDA", $read->getResult()[0] ?? []);
+    } else {
+        header("Location: " . HOME . "logout");
+    }
+} else {
+    header("Location: " . HOME . "logout");
+}
 
 ?>
 

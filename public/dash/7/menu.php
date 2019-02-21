@@ -2,7 +2,11 @@
 
 $read = new \ConnCrud\Read();
 $read->exeRead("revenda", "WHERE login = :id", "id={$_SESSION['userlogin']['id']}");
-define("REVENDA", $read->getResult()[0] ?? []);
+if($read->getResult()) {
+    define("REVENDA", $read->getResult()[0] ?? []);
+} else {
+    header("Location: " . HOME . "logout");
+}
 
 ?>
 
