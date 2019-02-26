@@ -8,11 +8,12 @@ $del = new \ConnCrud\Delete();
 $read->exeRead("consultor", "WHERE id = :id", "id={$dados['id']}");
 $dados = $read->getResult()[0] ?? [];
 
+$setor = $_SESSION['userlogin']['setor'] ?? 0;
 $nome = $dados[$dicCliente->search($dicCliente->getInfo()['title'])->getColumn()];
 $senha = $dados[$dicCliente->search($dicCliente->getInfo()['password'])->getColumn()];
 $columnStatus = $dicCliente->search($dicCliente->getInfo()['status'])->getColumn();
 $status = $dados[$columnStatus];
-$consultor = [$columnStatus => $_SESSION['userlogin']['setor'] <= ADM ? $status : 0];
+$consultor = [$columnStatus => $setor <= ADM ? $status : 0];
 
 /* COLUMN NAME */
 $tel = $dicUser->search($dicUser->getInfo()['tel'])->getColumn();
@@ -25,20 +26,18 @@ $admSetor = ADM;
 
 //CNPJ
 $cnpj = "";
-if ($_SESSION['userlogin']['setor'] === "7") {
-    $read = new \ConnCrud\Read();
+if ($setor === "7") {
     $read->exeRead("revenda", "WHERE login = :id", "id={$_SESSION['userlogin']['id']}");
     if($read->getResult())
         $cnpj = $read->getResult()[0]['cnpj'];
 
-} elseif ($_SESSION['userlogin']['setor'] === "8") {
-    $read = new \ConnCrud\Read();
+} elseif ($setor === "8") {
     $read->exeRead("consultor", "WHERE login = :id", "id={$_SESSION['userlogin']['id']}");
     if($read->getResult())
         $cnpj = $read->getResult()[0]['pessoa'] == "1" ? $read->getResult()[0]['cnpj'] : $read->getResult()[0]['cpf'];
 }
 
-$tipo = ($_SESSION['userlogin']['setor'] === 8 ? "o Consultor(a)" : "a Revenda") . " com CNPJ <b>{$cnpj}</b>";
+$tipo = ($setor === 8 ? "o Consultor(a)" : "a Revenda") . " com CNPJ <b>{$cnpj}</b>";
 
 if ($dados['pessoa'] == 1) {
     //consultor jurídio
@@ -111,6 +110,12 @@ if (empty($erro)) {
             $consultor["login"] = $dicUser->search(0)->getValue();
             $up->exeUpdate("usuarios", [$pass => $senha], "WHERE id = :id", "id={$consultor["login"]}");
         }
+    }
+
+    if($setor <= ADM && !empty($dados['revenda'])) {
+        $read->exeRead("revenda", "WHERE id = :id", "id={$dados['revenda']}");
+        if($read->getResult())
+            $consultor['dono'] = $read->getResult()[0]['login'];
     }
 
     $up->exeUpdate("consultor", $consultor, "WHERE id = :id", "id={$dados['id']}");

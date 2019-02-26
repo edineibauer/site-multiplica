@@ -21,9 +21,8 @@
                     <h4 class="padding-medium theme-l1 upper" style="line-height: 25px;height: 70px; overflow: hidden">
                         {($dado.tipo === 1)? $dado.nome : $dado.razao_social}
                     </h4>
-                    <span class="col padding-medium padding-4 color-gray-light" style="height: 55px;overflow: hidden">
+                    <span class="col padding-medium padding-4 color-gray-light" style="height: 30px;overflow: hidden">
                         <span class="col">tel:&nbsp;&nbsp;{$dado.telefone}</span>
-                        <span class="col">{$dado.email}</span>
                     </span>
                 </div>
                 <ul class="col" style="height: 200px; overflow-x:hidden; overflow-y: auto">

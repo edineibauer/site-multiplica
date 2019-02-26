@@ -21,15 +21,19 @@ if (empty($dados['login'])) {
             "token_recovery" => $senhaUser
         ];
 
-        $dicUser = new \Entity\Dicionario("usuarios");
-        $dicUser->setData($user);
-        $dicUser->save();
+        $read = new \ConnCrud\Read();
+        $create = new \ConnCrud\Create();
+        $up = new \ConnCrud\Update();
 
-        if ($dicUser->getError()) {
-            $data['error'] = $dicUser->getError();
+        $read->exeRead("usuarios", "WHERE nome = :nn", "nn={$user['nome']}");
+        $user['nome'] .= ($read->getResult() ? "-" . strtotime('now') : "");
+        $user['nome_usuario'] = \Helpers\Check::name($user['nome']);
+
+        $create->exeCreate("usuarios", $user);
+        if($create->getResult()) {
+            $up->exeUpdate("clientes_juridicos", ["login" => $create->getResult()], "WHERE id = :id", "id={$dados['id']}");
         } else {
-            $up = new \ConnCrud\Update();
-            $up->exeUpdate("clientes_juridicos", ["login" => $dicUser->search(0)->getValue()], "WHERE id = :id", "id={$dados['id']}");
+            $data['error'] = ['id' => "não foi possível criar usuário"];
         }
     }
 }

@@ -3,12 +3,15 @@
 $dicCliente = new \Entity\Dicionario("clientes");
 $dicUser = new \Entity\Dicionario("usuarios");
 $nome = $dados[$dicCliente->search($dicCliente->getInfo()['title'])->getColumn()];
+$setor = $_SESSION['userlogin']['setor'];
+
+$up = new \ConnCrud\Update();
+$read = new \ConnCrud\Read();
 
 /* COLUMN NAME */
 $tel = $dicUser->search($dicUser->getInfo()['tel'])->getColumn();
 $email = $dicUser->search($dicUser->getInfo()['email'])->getColumn();
 
-$read = new \ConnCrud\Read();
 $read->exeRead("clientes", "WHERE id = :ll", "ll={$dados['id']}");
 $cliente = $read->getResult()[0];
 
@@ -29,15 +32,15 @@ if (empty($cliente['login']) && !empty($nome) && (!empty($cliente['email']) || !
         "token_recovery" => $senhaUser
     ];
 
-    $dicUser->setData($user);
-    $dicUser->save();
+    $read->exeRead("usuarios", "WHERE nome = :nn", "nn={$user['nome']}");
+    $user['nome'] .= ($read->getResult() ? "-" . strtotime('now') : "");
+    $user['nome_usuario'] = \Helpers\Check::name($user['nome']);
 
-
-    if ($dicUser->getError()) {
-        $data['error'] = $dicUser->getError();
+    $create->exeCreate("usuarios", $user);
+    if($create->getResult()) {
+        $up->exeUpdate("clientes", ["login" => $create->getResult()], "WHERE id = :id", "id={$dados['id']}");
     } else {
-        $up = new \ConnCrud\Update();
-        $up->exeUpdate("clientes", ["login" => $dicUser->search(0)->getValue()], "WHERE id = :id", "id={$dados['id']}");
+        $data['error'] = ['id' => "não foi possível criar usuário"];
     }
 
 } elseif (!empty($cliente['login'])) {
@@ -48,10 +51,8 @@ if (empty($cliente['login']) && !empty($nome) && (!empty($cliente['email']) || !
         "nome" => $cliente['nome_completo'],
         "nome_usuario" => \Helpers\Check::name($cliente['nome_completo']),
         $email => $cliente['email'] ?? "",
-        $tel => $cliente['telefone'] ?? "",
-        "id" => $cliente['login']
+        $tel => $cliente['telefone'] ?? ""
     ];
 
-    $dicUser->setData($user);
-    $dicUser->save();
+    $up->exeUpdate("usuarios", $user, "WHERE id =:id", "id={$cliente['login']}");
 }

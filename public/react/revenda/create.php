@@ -7,6 +7,7 @@ $read = new \ConnCrud\Read();
 $read->exeRead("revenda", "WHERE id = :id", "id={$dados['id']}");
 $dados = $read->getResult()[0] ?? [];
 
+$setor = $_SESSION['userlogin']['setor'] ?? 0;
 $nome = $dados[$dicCliente->search($dicCliente->getInfo()['title'])->getColumn()];
 $senha = $dados[$dicCliente->search($dicCliente->getInfo()['password'])->getColumn()];
 $columnStatus = $dicCliente->search($dicCliente->getInfo()['status'])->getColumn();
@@ -18,8 +19,8 @@ $email = $dicUser->search($dicUser->getInfo()['email'])->getColumn();
 $pass = $dicUser->search($dicUser->getInfo()['password'])->getColumn();
 
 $revenda = [
-    $columnStatus => $_SESSION['userlogin']['setor'] <= ADM ? $status : 0,
-    "master" => $_SESSION['userlogin']['setor'] <= ADM && $dados['master'] ? 1 : 0
+    $columnStatus => $setor <= ADM ? $status : 0,
+    "master" => $setor <= ADM && $dados['master'] ? 1 : 0
 ];
 
 $up = new \ConnCrud\Update();
@@ -48,4 +49,16 @@ if(!empty($nome) && !empty($senha)) {
         $up->exeUpdate("usuarios", [$pass => $senha],"WHERE id = :id", "id={$revenda["login"]}");
     }
 }
+
+if($setor <= ADM && !empty($dados['revenda'])) {
+    $read->exeRead("revenda", "WHERE id = :id", "id={$dados['revenda']}");
+    if($read->getResult())
+        $revenda['dono'] = $read->getResult()[0]['login'];
+
+} elseif ($setor === "7") {
+    $read->exeRead("revenda", "WHERE login = :id", "id={$_SESSION['userlogin']['id']}");
+    if($read->getResult())
+        $revenda['revenda'] = $read->getResult()[0]['id'];
+}
+
 $up->exeUpdate("revenda", $revenda, "WHERE id = :id", "id={$dados['id']}");

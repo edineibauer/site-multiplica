@@ -4,9 +4,11 @@ $dicCliente = new \Entity\Dicionario("revenda");
 $dicUser = new \Entity\Dicionario("usuarios");
 
 $read = new \ConnCrud\Read();
+$up = new \ConnCrud\Update();
 $read->exeRead("revenda", "WHERE id = :id", "id={$dados['id']}");
 $dados = $read->getResult()[0] ?? [];
 
+$setor = $_SESSION['userlogin']['setor'] ?? 0;
 $nome = $dados[$dicCliente->search($dicCliente->getInfo()['title'])->getColumn()];
 $senha = $dados[$dicCliente->search($dicCliente->getInfo()['password'])->getColumn()];
 $columnStatus = $dicCliente->search($dicCliente->getInfo()['status'])->getColumn();
@@ -17,11 +19,9 @@ $tel = $dicUser->search($dicUser->getInfo()['tel'])->getColumn();
 $email = $dicUser->search($dicUser->getInfo()['email'])->getColumn();
 $pass = $dicUser->search($dicUser->getInfo()['password'])->getColumn();
 
-$up = new \ConnCrud\Update();
-
 $revenda = [
-    $columnStatus => $_SESSION['userlogin']['setor'] < 3 ? $status : 0,
-    "master" => $_SESSION['userlogin']['setor'] < 3 && $dados['master'] ? 1 : 0
+    $columnStatus => $setor <= ADM || $dadosOld[$columnStatus] == 1 ? $status : 0,
+    "master" => $setor <= ADM || $dadosOld['master'] == 1 ? $dados['master'] : 0
 ];
 
 if (empty($dados['login']) && !empty($nome) && !empty($senha)) {
@@ -51,11 +51,6 @@ if (empty($dados['login']) && !empty($nome) && !empty($senha)) {
 
 } else {
 
-    $revenda = [
-        $columnStatus => $_SESSION['userlogin']['setor'] < 3 || $dadosOld[$columnStatus] == 1 ? $status : 0,
-        "master" => $_SESSION['userlogin']['setor'] < 3 || $dadosOld['master'] == 1 ? $dados['master'] : 0
-    ];
-
     if (!empty($dados['login'])) {
         $user = [
             "nome" => $nome,
@@ -70,6 +65,17 @@ if (empty($dados['login']) && !empty($nome) && !empty($senha)) {
         $up->exeUpdate("usuarios", $user, "WHERE id = :id", "id={$dados['login']}");
     }
 
+}
+
+if($setor <= ADM && !empty($dados['revenda'])) {
+    $read->exeRead("revenda", "WHERE id = :id", "id={$dados['revenda']}");
+    if($read->getResult())
+        $revenda['dono'] = $read->getResult()[0]['login'];
+
+} elseif ($setor === "7") {
+    $read->exeRead("revenda", "WHERE login = :id", "id={$_SESSION['userlogin']['id']}");
+    if($read->getResult())
+        $revenda['revenda'] = $read->getResult()[0]['id'];
 }
 
 $up->exeUpdate("revenda", $revenda, "WHERE id = :id", "id={$dados['id']}");

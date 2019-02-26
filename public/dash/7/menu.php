@@ -11,7 +11,7 @@ if($read->getResult()) {
 ?>
 
 <style>
-    .showifadm {display: none}
+    .showifadm, .showifactive {display: none}
 </style>
 
 <script>
