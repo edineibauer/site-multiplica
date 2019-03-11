@@ -7,6 +7,7 @@ $setor = $_SESSION['userlogin']['setor'];
 
 $up = new \ConnCrud\Update();
 $read = new \ConnCrud\Read();
+$create = new \ConnCrud\Create();
 
 /* COLUMN NAME */
 $tel = $dicUser->search($dicUser->getInfo()['tel'])->getColumn();
@@ -15,7 +16,7 @@ $email = $dicUser->search($dicUser->getInfo()['email'])->getColumn();
 $read->exeRead("clientes", "WHERE id = :ll", "ll={$dados['id']}");
 $cliente = $read->getResult()[0];
 
-if (empty($cliente['login']) && !empty($nome) && (!empty($cliente['email']) || !empty($cliente['telefone']))) {
+if (empty($cliente['login']) && !empty($nome) && (!empty($dados['cpf']) || !empty($cliente['email']) || !empty($cliente['telefone']))) {
 
     //Atualizou Cliente, não Existia Usuário, Requisitos Atendidos, Cria Usuário, Envia Email
     $senhaUser = (!empty($cliente['cpf']) ? substr($cliente['cpf'], 0, 4) : (!empty($cliente['email']) ? explode("@", $cliente['email'])[0] : substr($cliente['telefone'], 0, 4)));
@@ -24,7 +25,7 @@ if (empty($cliente['login']) && !empty($nome) && (!empty($cliente['email']) || !
         "nome_usuario" => \Helpers\Check::name($nome),
         $email => $cliente['email'] ?? "",
         $tel => $cliente['telefone'] ?? "",
-        "nova_senha" => $senhaUser,
+        "nova_senha" => \Helpers\Check::password($senhaUser),
         "data" => date("Y-m-d H:i:s"),
         "status" => 1,
         "setor" => 6,

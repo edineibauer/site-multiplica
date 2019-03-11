@@ -17,7 +17,7 @@ $create = new \ConnCrud\Create();
 $tel = $dicUser->search($dicUser->getInfo()['tel'])->getColumn();
 $email = $dicUser->search($dicUser->getInfo()['email'])->getColumn();
 
-if(!empty($nome) && (!empty($dados[$email]) || !empty($dados[$tel]))) {
+if(!empty($nome) && (!empty($dados['cpf']) || !empty($dados[$email]) || !empty($dados[$tel]))) {
 
     $senhaUser = (!empty($dados['cpf']) ? substr($dados['cpf'], 0, 4) : (!empty($dados[$email]) ? explode("@", $dados[$email])[0] : substr($dados[$tel], -4)));
     $user = [
@@ -25,7 +25,7 @@ if(!empty($nome) && (!empty($dados[$email]) || !empty($dados[$tel]))) {
         "nome_usuario" => \Helpers\Check::name($nome),
         $email => $dados[$email] ?? "",
         $tel => $dados[$tel] ?? "",
-        "nova_senha" => $senhaUser,
+        "nova_senha" => \Helpers\Check::password($senhaUser),
         "data" => date("Y-m-d H:i:s"),
         "status" => 1,
         "setor" => 6,

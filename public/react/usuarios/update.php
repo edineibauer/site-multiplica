@@ -1,9 +1,7 @@
 <?php
 /* Reenvia SMS caso seja alterado */
-if (!empty($dados['telefone']) && $dadosOld['telefone'] !== $dados['telefone']) {
+if (in_array($dados['setor'], [4, 5, 6]) && !empty($dados['telefone']) && $dadosOld['telefone'] !== $dados['telefone']) {
     try {
-        //Prepara para enviar email
-
         $read = new \ConnCrud\Read();
         $read->exeRead("clientes", "WHERE login = :ll", "ll={$dados['id']}");
         if ($read->getResult()) {

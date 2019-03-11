@@ -13,7 +13,7 @@ if (empty($dados['login'])) {
             "nome_usuario" => \Helpers\Check::name($nome),
             "email" => $dados[$email] ?? "",
             "telefone" => $dados[$tel] ?? "",
-            "nova_senha" => $senhaUser,
+            "nova_senha" => \Helpers\Check::password($senhaUser),
             "data" => date("Y-m-d H:i:s"),
             "status" => 1,
             "setor" => 5,
