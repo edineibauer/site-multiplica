@@ -39,6 +39,10 @@ if (empty($cliente['login']) && !empty($nome) && (!empty($dados['cpf']) || !empt
 
     $create->exeCreate("usuarios", $user);
     if($create->getResult()) {
+        $react = new \Entity\React("create", "usuarios", $user);
+        if(!empty($react->getResponse()['error']))
+            $data['error'] = $react->getResponse()['error'];
+
         $up->exeUpdate("clientes", ["login" => $create->getResult()], "WHERE id = :id", "id={$dados['id']}");
     } else {
         $data['error'] = ['id' => "não foi possível criar usuário"];
@@ -55,5 +59,17 @@ if (empty($cliente['login']) && !empty($nome) && (!empty($dados['cpf']) || !empt
         $tel => $cliente['telefone'] ?? ""
     ];
 
-    $up->exeUpdate("usuarios", $user, "WHERE id =:id", "id={$cliente['login']}");
+    $read->exeRead("usuarios", "WHERE id =:id", "id={$cliente['login']}");
+    if($read->getResult()) {
+        $dadosOld = $read->getResult()[0];
+
+        $up->exeUpdate("usuarios", $user, "WHERE id =:id", "id={$cliente['login']}");
+
+        $read->exeRead("usuarios", "WHERE id =:id", "id={$cliente['login']}");
+        if($read->getResult()) {
+            $react = new \Entity\React("update", "usuarios", $read->getResult()[0], $dadosOld);
+            if(!empty($react->getResponse()['error']))
+                $data['error'] = $react->getResponse()['error'];
+        }
+    }
 }

@@ -9,7 +9,7 @@ $telDestinatario = (!empty($d->getInfo()['tel']) ? $dados[$d->search($d->getInfo
 $nome = $dados[$d->search($d->getInfo()['title'])->getColumn()];
 $senha = (!empty($dados['token_recovery']) ? $dados['token_recovery'] : "");
 
-if (in_array($dados['setor'], [4, 5, 6])) {
+if (in_array($dados['setor'], [4, 5, 6, 7, 8])) {
     if (!empty($emailDestinatario)) {
         try {
             //Prepara para enviar email
@@ -43,9 +43,16 @@ if (in_array($dados['setor'], [4, 5, 6])) {
         try {
             //Prepara para enviar email
             $telDic = new \Entity\Dicionario("smsiagente");
+
+            if($dados['setor'] == "7" || $dados['setor'] == "8") {
+                $mensagem = "Bem vindo (a) a MULTIPLICA, acesse seu PAINEL DE NEGÓCIOS através do link https://bit.ly/2SUi6mJ com seu E-mail cadastrado, juntamente com a senha informada.";
+            } else {
+                $mensagem = "Bem vindo(a) a MULTIPLICA, utilize o APP para android http://bit.ly/2qhm6la, acesse com seu Email ou CPF/CNPJ, juntamente com a senha: {$senha}";
+            }
+
             $telDic->setData([
                 "celular" => $telDestinatario,
-                "mensagem" => "Bem vindo(a) a MULTIPLICA, utilize o APP para android http://bit.ly/2qhm6la, acesse com seu Email ou CPF/CNPJ, juntamente com a senha: {$senha}",
+                "mensagem" => $mensagem,
                 "status" => "AGUARDANDO"
             ]);
             $telDic->save();

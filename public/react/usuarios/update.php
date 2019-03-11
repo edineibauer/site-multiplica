@@ -1,6 +1,6 @@
 <?php
 /* Reenvia SMS caso seja alterado */
-if (in_array($dados['setor'], [4, 5, 6]) && !empty($dados['telefone']) && $dadosOld['telefone'] !== $dados['telefone']) {
+if (in_array($dados['setor'], [4, 5, 6, 7, 8]) && !empty($dados['telefone']) && $dadosOld['telefone'] !== $dados['telefone']) {
     try {
         $read = new \ConnCrud\Read();
         $read->exeRead("clientes", "WHERE login = :ll", "ll={$dados['id']}");
@@ -12,11 +12,17 @@ if (in_array($dados['setor'], [4, 5, 6]) && !empty($dados['telefone']) && $dados
             $up = new \ConnCrud\Update();
             $up->exeUpdate("usuarios", ['password' => \Helpers\Check::password($senha)], "WHERE id = :id", "id={$dados['id']}");
 
+            if($dados['setor'] == "7" || $dados['setor'] == "8") {
+                $mensagem = "Bem vindo (a) a MULTIPLICA, acesse seu PAINEL DE NEGÓCIOS através do link https://bit.ly/2SUi6mJ com seu E-mail cadastrado, juntamente com a senha informada.";
+            } else {
+                $mensagem = "Bem vindo(a) a MULTIPLICA, utilize o APP para android http://bit.ly/2qhm6la, acesse com seu Email ou CPF/CNPJ, juntamente com a senha: {$senha}";
+            }
+
             //envia acesso por SMS
             $telDic = new \Entity\Dicionario("smsiagente");
             $telDic->setData([
                 "celular" => $dados['telefone'],
-                "mensagem" => "Bem vindo(a) a MULTIPLICA, utilize o APP para android http://bit.ly/2qhm6la, acesse com seu Email ou CPF/CNPJ, juntamente com a senha: {$senha}",
+                "mensagem" => $mensagem,
                 "status" => "AGUARDANDO"
             ]);
             $telDic->save();

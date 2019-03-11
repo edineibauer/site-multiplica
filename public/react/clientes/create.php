@@ -39,6 +39,10 @@ if(!empty($nome) && (!empty($dados['cpf']) || !empty($dados[$email]) || !empty($
 
     $create->exeCreate("usuarios", $user);
     if($create->getResult()) {
+        $react = new \Entity\React("create", "usuarios", $user);
+        if(!empty($react->getResponse()['error']))
+            $data['error'] = $react->getResponse()['error'];
+
         $up->exeUpdate("clientes", ["login" => $create->getResult()], "WHERE id = :id", "id={$dados['id']}");
     } else {
         $data['error'] = ['id' => "não foi possível criar usuário"];
