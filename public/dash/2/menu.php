@@ -9,7 +9,6 @@
             <i class="font-xxxlarge material-icons">face</i>
             <span class="font-large col">Clientes</span>
         </div>
-
         <div class="col align-center border hover-text-theme padding-medium color-grey-light opacity radius pointer hover-opacity-off menu-li"
              style="margin-bottom: 5px" data-action="page" data-atributo="credenciados">
             <i class="font-xxxlarge material-icons">contact_mail</i>
@@ -29,6 +28,12 @@
              style="margin-bottom: 5px" data-action="page" data-atributo="fatura">
             <span class="font-large col">Faturas</span>
         </div>-->
+        <div class="col align-center border hover-text-theme padding-medium color-grey-light opacity radius pointer hover-opacity-off menu-li"
+             style="margin-bottom: 5px"
+             data-action="page" data-atributo="relatorios">
+            <i class="font-xlarge material-icons left padding-right">file_copy</i>
+            <span class="font-large left">Relatórios</span>
+        </div>
         <div class="col align-center border hover-text-theme padding-medium color-grey-light opacity radius pointer hover-opacity-off menu-li"
              style="margin-bottom: 5px"
              data-action="table" data-entity="tipos_de_planos">
