@@ -32,7 +32,13 @@
              style="margin-bottom: 5px"
              data-action="page" data-atributo="relatorios">
             <i class="font-xlarge material-icons left padding-right">file_copy</i>
-            <span class="font-large left">Relatórios</span>
+            <span class="font-large left">Propostas</span>
+        </div>
+        <div class="col align-center border hover-text-theme padding-medium color-grey-light opacity radius pointer hover-opacity-off menu-li"
+             style="margin-bottom: 5px"
+             data-action="page" data-atributo="relatoriosImportacao">
+            <i class="font-xlarge material-icons left padding-right">file_copy</i>
+            <span class="font-large left">Importação</span>
         </div>
         <div class="col align-center border hover-text-theme padding-medium color-grey-light opacity radius pointer hover-opacity-off menu-li"
              style="margin-bottom: 5px"
