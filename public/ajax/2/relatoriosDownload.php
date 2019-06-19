@@ -24,8 +24,8 @@ function mask($val, $mask)
     return $maskared;
 }
 
-if(file_exists(PATH_HOME . "propostasPendentes.xlsx"))
-    unlink(PATH_HOME . "propostasPendentes.xlsx");
+if(file_exists(PATH_HOME . "relatorio-propostas-pendentes.xlsx"))
+    unlink(PATH_HOME . "relatorio-propostas-pendentes.xlsx");
 
 $spreadsheet = new Spreadsheet();  /*----Spreadsheet object-----*/
 $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, "Xlsx");
@@ -45,11 +45,11 @@ $activeSheet->setCellValue('I1' , 'DATA CADASTRO');
 
 foreach ($dadosClientes['clientes'] as $i => $cliente) {
     $activeSheet->setCellValue('A' . ($i + 2) , $cliente['nome_completo']);
-    $activeSheet->setCellValue('B' . ($i + 2) , mask($cliente['cpf'],'###.###.###-##'));
+    $activeSheet->setCellValue('B' . ($i + 2) , !empty($cliente['cpf']) ? mask($cliente['cpf'],'###.###.###-##') : "");
     $activeSheet->setCellValue('C' . ($i + 2) , (!empty($cliente['telefone']) ? (mask($cliente['telefone'], (strlen($cliente['telefone']) === 8 ? '####-####' : (strlen($cliente['telefone']) === 9 ? '#####-####' : (strlen($cliente['telefone']) === 10 ? '(##) ####-####' : '(##) #####-####'))))) : ""));
-    $activeSheet->setCellValue('D' . ($i + 2) , $cliente['email']);
-    $activeSheet->setCellValue('E' . ($i + 2) , $cliente['consultor']);
-    $activeSheet->setCellValue('F' . ($i + 2) , $cliente['plano']);
+    $activeSheet->setCellValue('D' . ($i + 2) , $cliente['email'] ?? "");
+    $activeSheet->setCellValue('E' . ($i + 2) , $cliente['consultor'] ?? "");
+    $activeSheet->setCellValue('F' . ($i + 2) , $cliente['plano'] ?? "");
     $activeSheet->setCellValue('G' . ($i + 2) , $cliente['data_de_inicio']);
     $activeSheet->setCellValue('H' . ($i + 2) , $cliente['dia_da_fatura']);
     $activeSheet->setCellValue('I' . ($i + 2) , $cliente['data_de_abertura']);
@@ -58,4 +58,4 @@ foreach ($dadosClientes['clientes'] as $i => $cliente) {
 foreach(range('A','I') as $columnID)
     $spreadsheet->getActiveSheet()->getColumnDimension($columnID)->setAutoSize(true);
 
-$writer->save(PATH_HOME . "propostasPendentes.xlsx");
+$writer->save(PATH_HOME . "relatorio-propostas-pendentes.xlsx");

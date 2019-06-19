@@ -60,6 +60,7 @@ $fatura = [1 => "10", 2 => "15", 3 => "20"];
 if ($sql->getResult()) {
     foreach ($sql->getResult() as $item) {
         $item['data_de_inicio'] = date("d/m/Y", strtotime($item['data_de_inicio']));
+        $item['data_de_abertura'] = date("d/m/Y", strtotime($item['data_de_abertura']));
         $item['dia_da_fatura'] = $fatura[$item['dia_da_fatura']];
         $item['consultor'] = !empty($item['consultor']) && !empty($consultor[$item['consultor']]) ? $consultor[$item['consultor']]['nome_razao_social'] : "";
         $item['plano'] = !empty($item['plano']) && !empty($planos[$item['plano']]) ? $planos[$item['plano']]['titulo'] : "";

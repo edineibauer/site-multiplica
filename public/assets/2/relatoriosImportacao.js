@@ -14,6 +14,6 @@ function downloadRelatorio() {
 
     post("site-multiplica", "relatoriosImportacaoDownload", {datestart: start, dateend: end}, function (data) {
         $("#table-relatorio").html(data);
-        window.location.href = HOME + 'relatorio-importacao-clientes.xlsx';
+        window.location.href = HOME + 'relatorio-importacao-clientes.xlsx?v=' + Date.now();
     });
 }
