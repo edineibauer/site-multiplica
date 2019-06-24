@@ -29,12 +29,12 @@ $where = "";
 $whereJ = "";
 
 if (!empty($start)) {
-    $where = "c.data_de_abertura >= '{$start}'";
-    $whereJ = "c.data_de_inicio >= '{$start}'";
+    $where = "p.data_de_inicio >= '{$start}'";
+    $whereJ = "p.data_de_inicio >= '{$start}'";
 }
 if (!empty($end)) {
-    $where .= (!empty($where) ? " AND " : "") . "c.data_de_abertura <= '{$end}'";
-    $whereJ .= (!empty($whereJ) ? " AND " : "") . "c.data_de_inicio <= '{$end}'";
+    $where .= (!empty($where) ? " AND " : "") . "p.data_de_inicio <= '{$end}'";
+    $whereJ .= (!empty($whereJ) ? " AND " : "") . "p.data_de_inicio <= '{$end}'";
 }
 
 $results = [];

@@ -22,7 +22,7 @@
                 <span>Plano</span>
             </th>
             <th>
-                <span>Data de Cadastro</span>
+                <span>Data do Contrato</span>
             </th>
             <th>
                 <span>Vencimento</span>
@@ -48,7 +48,7 @@
                     {$k.plano}
                 </td>
                 <td class="padding-16">
-                    {$k.data}
+                    {$k.data_de_inicio}
                 </td>
                 <td class="padding-16">
                     {$k.dia_da_fatura}
